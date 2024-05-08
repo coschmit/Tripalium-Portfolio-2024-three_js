@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>THREE JS CDN</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <style>
+      body {
+        margin: 0;
+        background: "#fff";
+      }
+    </style>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@v0.149.0/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@v0.149.0/examples/jsm/"
+        }
+      }
+    </script>
+    <script src="./index.js" type="module"></script>
+
+    <div class="canvas-profile paul-profile">
+      <div class="row">
+        <span class="body-1 name">Paul Gilbert</span>
+      </div>
+      <div class="row space-between">
+        <div class="location-wrapper">
+          <span class="ui-2 country">France</span>
+          <span class="ui-2 detail">pyrénées / paris</span>
+        </div>
+        <div class="arrow-wrapper">↗</div>
+      </div>
+    </div>
+
+    <div class="canvas-profile colin-profile">
+      <div class="row">
+        <span class="body-1 name">Colin Schmitt</span>
+      </div>
+      <div class="row space-between">
+        <div class="location-wrapper">
+          <span class="ui-2 country">Perù</span>
+          <span class="ui-2 detail">Lima</span>
+        </div>
+        <div class="arrow-wrapper">↗</div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,83 @@
+:root {
+  --token-display--font-family: "Pp Neue Montreal Variable", sans-serif;
+  --primitive-lava--lava-600: #e51111;
+  --primitive-letter-spacing--1: -0.01em;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+.space-around {
+  justify-content: space-around;
+}
+.space-between {
+  justify-content: space-between;
+}
+
+.canvas-profile {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: stretch;
+  position: absolute;
+  cursor: pointer;
+}
+.canvas-profile.paul-profile {
+  left: 50px;
+  top: 50px;
+}
+.canvas-profile.colin-profile {
+  right: 50px;
+  bottom: 50px;
+}
+.canvas-profile .row .name {
+  font-family: var(--token-display--font-family);
+  color: var(--primitive-lava--lava-600, #e51111);
+  font-size: var(--number-56, 56px);
+  font-style: normal;
+  font-weight: 450;
+  line-height: 110%;
+  letter-spacing: var(--primitive-letter-spacing--1);
+}
+
+.canvas-profile .row .location-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.canvas-profile .row .location-wrapper .country {
+  color: var(--primitive-lava--lava-600, #e51111);
+  display: flex;
+  padding: 4px 12px 3px 12px;
+  border-radius: 55px;
+  border: 1px solid var(--primitive-lava--lava-600, #e51111);
+
+  font-family: var(--token-display--font-family);
+  font-size: var(--number-12, 12px);
+  font-weight: 450;
+  line-height: 100%;
+  letter-spacing: var(--primitive-letter-spacing--1);
+  text-transform: uppercase;
+}
+
+.canvas-profile .row .location-wrapper .detail {
+  color: var(--contrast-primary-lava-high, #e51111);
+  font-family: var(--token-display--font-family);
+  font-size: var(--number-12, 12px);
+  font-style: normal;
+  font-weight: 450;
+  line-height: 100%;
+  letter-spacing: -0.12px;
+  text-transform: uppercase;
+}
+
+.canvas-profile .row .arrow-wrapper {
+  color: var(--primitive-lava--lava-600, #e51111);
+  font-family: var(--token-display--font-family);
+  font-size: 16px;
+  font-weight: 450;
+  line-height: 130%;
+  letter-spacing: var(--primitive-letter-spacing--1);
+}
