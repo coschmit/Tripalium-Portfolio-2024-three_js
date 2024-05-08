@@ -44,7 +44,9 @@ void main() {
 `;
 
 const getSphere = () => {
-  const texture = new THREE.TextureLoader().load("./tripalium-earth-map.png");
+  const earth_texture_url =
+    "https://uploads-ssl.webflow.com/65cd3dbed53c92b25e55ea23/663a6e88f110af5e3d8d9b1c_tripalium-earth-map.png";
+  const texture = new THREE.TextureLoader().load(earth_texture_url);
 
   const geometry = new THREE.SphereGeometry(1, 30, 30);
   const material = new THREE.MeshBasicMaterial({
