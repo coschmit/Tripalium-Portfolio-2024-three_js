@@ -14,24 +14,23 @@ export const toSphereCoordinates = (lat, lng, scale) => {
 export const handleCanvasProfileOver = (app) => {
   const canvasProfiles = document.querySelectorAll(".canvas-profile");
 
-  console.log("app", app, app.markers.markers);
   canvasProfiles.forEach((canvasProfile, index) => {
     const position = groups.markers.children[index].position;
     const id = canvasProfile.getAttribute("data-value");
-    const markerSelected = app.markers.markers.find(
-      (marker) => marker.name === id
-    );
-    console.log("markerSelected", markerSelected, id);
+    if (id) {
+      const markerSelected = app.markers.markers.find(
+        (marker) => marker.name === id
+      );
 
-    canvasProfile.addEventListener("mouseenter", () => {
-      animateFocusMarkerLocation(app, position);
-      console.log("markerSelected 2", markerSelected);
-      markerSelected.displayOverlay();
-    });
-    canvasProfile.addEventListener("mouseleave", () => {
-      unFocusMakerLocation(app);
-      markerSelected.hideOverlay();
-    });
+      canvasProfile.addEventListener("mouseenter", () => {
+        animateFocusMarkerLocation(app, position);
+        markerSelected.displayOverlay();
+      });
+      canvasProfile.addEventListener("mouseleave", () => {
+        unFocusMakerLocation(app);
+        markerSelected.hideOverlay();
+      });
+    }
   });
 };
 

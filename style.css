@@ -4,6 +4,11 @@
   --primitive-letter-spacing--1: -0.01em;
 }
 
+body {
+  margin: 0;
+  background: "#fff";
+}
+
 .row {
   display: flex;
   flex-direction: row;
@@ -89,9 +94,6 @@
   left: 0;
   top: 0;
   pointer-events: none;
-  /* opacity: 0; */
-
-  /* background: rgba(0, 0, 0, 0); */
 }
 
 .css3d-wrapper {
