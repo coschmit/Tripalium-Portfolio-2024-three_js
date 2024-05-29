@@ -78,8 +78,6 @@ export class App {
   initRaycaster = () => {
     this.raycaster = new THREE.Raycaster();
 
-    // this.raycaster.layers.enable(0);
-
     this.pointer = new THREE.Vector2();
 
     window.addEventListener("pointermove", this.handlePointerMove);
@@ -108,26 +106,13 @@ export class App {
   };
 
   handlePointerMove = (event) => {
-    // calculate pointer position in normalized device coordinates
-    // (-1 to +1) for both components
-
     this.pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
     this.pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
     this.onPointerMove(this);
   };
 
   // update clocks info overlay
-
   initClocks = () => {
-    const clockElements = document.getElementsByClassName("clock-time");
-    const timeZones = [
-      { label: "Lima", timeZone: "America/Lima" },
-      { label: "Paris", timeZone: "Europe/Paris" },
-    ];
-
-    // updateClocks(clockElements, timeZones);
-
-    // setInterval(() => updateClocks(clockElements, timeZones), 10000);
     setInterval(() => {
       this.markers.markers.forEach((marker) => {
         if (marker.overlayDisplayed === false) {
