@@ -21,7 +21,7 @@ export const handleCanvasProfileOver = (app) => {
     const markerSelected = app.markers.markers.find(
       (marker) => marker.name === id
     );
-    console.log("markerSelected", markerSelected, marker.name, id);
+    console.log("markerSelected", markerSelected, id);
 
     canvasProfile.addEventListener("mouseenter", () => {
       animateFocusMarkerLocation(app, position);
