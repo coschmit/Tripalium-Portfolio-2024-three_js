@@ -91,7 +91,7 @@ body {
 #html2canvas {
   position: absolute;
   z-index: -2;
-  left: 0;
+  left: -100%;
   top: 0;
   pointer-events: none;
 }

@@ -87,7 +87,7 @@ export class Marker {
       <div class="coordinates">
         <div class="latitude">${latitude}</div>
         <div class="longitude">${longitude}</div>
-        <div class="altitude">${altitude}}</div>
+        <div class="altitude">${altitude}</div>
       </div>
       <br />
       <div class="clock-time">${clock}</div>
