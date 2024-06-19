@@ -93,7 +93,8 @@ export class App {
 
   render = () => {
     this.setup(this);
-    document.body.appendChild(this.renderer.domElement);
+    const earthContainer = document.getElementById("earth-canvas-section");
+    earthContainer.appendChild(this.renderer.domElement);
   };
 
   update = () => {

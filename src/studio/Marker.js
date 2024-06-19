@@ -77,7 +77,7 @@ export class Marker {
     let { city, country, latitude, longitude, altitude, clock, timeZone } =
       this.overlayData;
     clock = getCurrentClockByTimeZone(timeZone);
-    console.log("clock", clock, timeZone);
+
     const div = `<div class="marker-overlay-data">
       <div class="location">
         <div class="city">${city}</div>
@@ -92,7 +92,7 @@ export class Marker {
       <br />
       <div class="clock-time">${clock}</div>
     </div>`;
-    console.log("div", div);
+
     const shareContent = document.getElementById("html2canvas");
     shareContent.innerHTML = div;
 
@@ -158,6 +158,9 @@ export class Marker {
   }
 
   displayOverlay() {
+    if (!this.overlay.material) {
+      return;
+    }
     this.overlayActive = true;
     this.overlayDisplayed = true;
     gsap.to(this.overlay.material, {

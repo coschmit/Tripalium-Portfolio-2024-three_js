@@ -4,7 +4,7 @@ import { App } from "./App.js";
 import { config, elements, groups } from "./config.js";
 import { Globe } from "./Globe.js";
 import { Markers } from "./Markers.js";
-import { animateFocusMarkerLocation, handleMarkerHover } from "./Markers.js";
+import { handleMarkerHover } from "./Markers.js";
 import { handleCanvasProfileOver } from "./utils.js";
 
 // 0xe51111
