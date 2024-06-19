@@ -20,6 +20,10 @@ body {
   justify-content: space-between;
 }
 
+#earth-canvas-section {
+  position: relative;
+}
+
 .canvas-profile {
   display: inline-flex;
   flex-direction: column;
