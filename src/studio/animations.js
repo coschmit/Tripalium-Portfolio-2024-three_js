@@ -81,10 +81,8 @@ function animateSprintCards() {
   if (window.innerWidth < 769) {
     const tl = gsap.timeline({
       scrollTrigger: {
-        markers: true,
         trigger: ".studio-agenda-container",
         start: "top 70%",
-        markers: true,
       },
     });
     sprintCardAnimateItems(tl, "mobile");
@@ -95,10 +93,8 @@ function animateSprintCards() {
       const delay = index * 0.5;
       const tl = gsap.timeline({
         scrollTrigger: {
-          markers: true,
           trigger: ".studio-agenda-container",
           start: "top 50%",
-          markers: true,
         },
         delay: delay,
       });
