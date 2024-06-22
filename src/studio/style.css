@@ -21,6 +21,7 @@ body {
 }
 
 #earth-canvas-section {
+  height: 100vh; /* we render a canvas of the height of the screen */
   position: relative;
 }
 

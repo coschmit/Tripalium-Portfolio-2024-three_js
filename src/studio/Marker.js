@@ -158,7 +158,7 @@ export class Marker {
   }
 
   displayOverlay() {
-    if (!this.overlay.material) {
+    if (!this.overlay) {
       return;
     }
     this.overlayActive = true;
