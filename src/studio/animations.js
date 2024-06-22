@@ -6,7 +6,7 @@ const circleDivs = document.querySelectorAll(".studio-circles-circle-wrapper");
 circleDivs.forEach((circleDiv) => {
   gsap.to(circleDiv, {
     y: 0,
-    ease: "power2.out",
+    ease: "none",
     scrollTrigger: {
       trigger: circleDivs[0],
       start: "top 40%",
