@@ -1,7 +1,6 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { groups } from "./config.js";
-import { updateClocks } from "./utils.js";
 
 export class App {
   constructor({ animate, setup, onPointerMove }) {
@@ -83,18 +82,29 @@ export class App {
     window.addEventListener("pointermove", this.handlePointerMove);
   };
 
-  handleResize = () => {
-    window.addEventListener("resize", () => {
-      this.camera.aspect = window.innerWidth / window.innerHeight;
-      this.camera.updateProjectionMatrix();
-      this.renderer.setSize(window.innerWidth, window.innerHeight);
-    });
+  updateObjectsGroupScale = () => {
+    if (window.innerWidth < 480) {
+      groups.main.scale.set(0.5, 0.5, 0.5);
+    } else if (window.innerWidth < 768) {
+      groups.main.scale.set(0.75, 0.75, 0.75);
+    } else {
+      groups.main.scale.set(1, 1, 1);
+    }
+  };
+
+  resizeCanvas = () => {
+    this.camera.aspect = window.innerWidth / window.innerHeight;
+    this.renderer.setSize(window.innerWidth, window.innerHeight);
+    this.camera.updateProjectionMatrix();
+    this.updateObjectsGroupScale();
   };
 
   render = () => {
     this.setup(this);
     const earthContainer = document.getElementById("earth-canvas-section");
     earthContainer.appendChild(this.renderer.domElement);
+
+    this.updateObjectsGroupScale();
   };
 
   update = () => {
@@ -107,8 +117,14 @@ export class App {
   };
 
   handlePointerMove = (event) => {
-    this.pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
-    this.pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
+    const rect = this.renderer.domElement.getBoundingClientRect();
+
+    this.pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+    this.pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+
+    // this.pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
+    // this.pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
     this.onPointerMove(this);
   };
 

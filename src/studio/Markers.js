@@ -52,7 +52,6 @@ export class Markers {
 
 export const handleMarkerHover = (app) => {
   const intersects = app.raycaster.intersectObjects(groups.markers.children);
-
   if (intersects.length > 0) {
     const intersectedMarker = intersects[0].object;
 

@@ -5,7 +5,7 @@ import { config, elements, groups } from "./config.js";
 import { Globe } from "./Globe.js";
 import { Markers } from "./Markers.js";
 import { handleMarkerHover } from "./Markers.js";
-import { handleCanvasProfileOver } from "./utils.js";
+import { debounce, handleCanvasProfileOver } from "./utils.js";
 
 // 0xe51111
 
@@ -43,6 +43,6 @@ const onPointerMove = (app) => {
 const app = new App({ setup, animate, onPointerMove });
 
 window.onload = app.init;
-window.onresize = app.handleResize;
+window.onresize = debounce(app.resizeCanvas, 500);
 
 const update = () => {};

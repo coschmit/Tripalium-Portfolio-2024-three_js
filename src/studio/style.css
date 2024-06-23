@@ -43,7 +43,7 @@ body {
 .canvas-profile .row .name {
   font-family: var(--token-display--font-family);
   color: var(--primitive-lava--lava-600, #e51111);
-  font-size: var(--number-56, 56px);
+  /* font-size already defined by webflow ui style */
   font-style: normal;
   font-weight: 450;
   line-height: 110%;
@@ -65,7 +65,7 @@ body {
   border: 1px solid var(--primitive-lava--lava-600, #e51111);
 
   font-family: var(--token-display--font-family);
-  font-size: var(--number-12, 12px);
+  /* font-size already defined by webflow ui style */
   font-weight: 450;
   line-height: 100%;
   letter-spacing: var(--primitive-letter-spacing--1);
@@ -75,7 +75,7 @@ body {
 .canvas-profile .row .location-wrapper .detail {
   color: var(--contrast-primary-lava-high, #e51111);
   font-family: var(--token-display--font-family);
-  font-size: var(--number-12, 12px);
+  /* font-size already defined by webflow ui style */
   font-style: normal;
   font-weight: 450;
   line-height: 100%;
@@ -84,9 +84,10 @@ body {
 }
 
 .canvas-profile .row .arrow-wrapper {
+  padding-left: 6px;
   color: var(--primitive-lava--lava-600, #e51111);
+  /* font-size already defined by webflow ui style */
   font-family: var(--token-display--font-family);
-  font-size: 16px;
   font-weight: 450;
   line-height: 130%;
   letter-spacing: var(--primitive-letter-spacing--1);
@@ -110,7 +111,7 @@ body {
   flex-direction: column;
   text-transform: capitalize;
   font-family: var(--token-display--font-family);
-  font-size: 12px;
+  /* font-size already defined by webflow ui style */
   font-weight: 450;
   line-height: 100%;
   letter-spacing: var(--primitive-letter-spacing--1);
