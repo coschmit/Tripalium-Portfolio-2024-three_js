@@ -119,3 +119,16 @@ body {
 .marker-overlay-data > * div {
   text-transform: uppercase;
 }
+
+/* SPLIDE style disabled */
+/* disable default splide style */
+.splide__arrow.splide__arrow--next,
+.splide__arrow.splide__arrow--prev,
+.splide__pagination {
+  display: none;
+  opacity: 0;
+}
+
+.splide__slide {
+  width: auto !important; /* Override Splide's width */
+}

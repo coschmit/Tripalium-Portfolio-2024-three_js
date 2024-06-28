@@ -1,4 +1,3 @@
-import * as THREE from "three";
 import { groups } from "./config.js";
 import { animateFocusMarkerLocation, unFocusMakerLocation } from "./Markers.js";
 
