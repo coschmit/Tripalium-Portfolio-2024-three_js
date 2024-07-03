@@ -87,12 +87,24 @@ const tagsDetail = document.querySelectorAll(
 
 tags.forEach((tag, index) => {
   tag.addEventListener("mouseenter", () => {
+    // Vérifier tous les tags pour réinitialiser le zIndex et éviter au saut d'affichage
+    tags.forEach((t) => {
+      if (t.style.zIndex === "2") {
+        t.style.zIndex = "initial";
+      }
+    });
+
     tagsDetail[index].classList.add("active");
+    tag.style.zIndex = 2;
     // using navigation blur
     navBar.classList.add("hovered");
   });
   tag.addEventListener("mouseleave", () => {
     tagsDetail[index].classList.remove("active");
+    setTimeout(() => {
+      tag.style.zIndex = "initial";
+    }, 200);
+
     // using navigation blur
     navBar.classList.remove("hovered");
   });
