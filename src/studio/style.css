@@ -114,6 +114,12 @@ body {
   text-transform: uppercase;
 }
 
+/* PROFILE DETAIL OVERLAY */
+
+.profile-detail-overlay {
+  will-change: opacity;
+}
+
 /* SPLIDE style disabled */
 /* disable default splide style */
 .splide__arrow.splide__arrow--next,
@@ -123,6 +129,7 @@ body {
   opacity: 0;
 }
 
-.splide__slide {
-  width: auto !important; /* Override Splide's width */
-}
+/* .splide__slide { */
+/* width: auto !important; 
+/* Override Splide's width */
+/* } */

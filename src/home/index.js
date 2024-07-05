@@ -32,7 +32,6 @@ ScrollTrigger.create({
   trigger: ".company-description-section",
   start: "top 30%",
   onToggle: (self) => {
-    console.log("toggled, isActive:", self.isActive, self.direction);
     if (self.isActive === true && self.direction === 1) {
       //active
       companyDescriptionSection.classList.add("variant");

@@ -47,6 +47,10 @@ html.lenis {
 
 /* NAVIGATION */
 
+.navigation {
+  will-change: auto;
+}
+
 .trplm-nav-link-wrapper .trplm-link-short .trplm-link-letter {
   transition: 0.2s ease-in margin;
 }
@@ -149,4 +153,10 @@ html.lenis {
 
 .valors-container .valor-row h1 {
   pointer-events: none;
+}
+
+/* CONTACT SECTION */
+.contact-section .contact-section-row .arrow {
+  will-change: transform;
+  cursor: default;
 }

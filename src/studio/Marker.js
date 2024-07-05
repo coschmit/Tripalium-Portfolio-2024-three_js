@@ -97,6 +97,7 @@ export class Marker {
     shareContent.innerHTML = div;
 
     const opts = {
+      logging: false,
       backgroundColor: null,
       dpi: window.devicePixelRatio,
       // scale: 6,
@@ -170,6 +171,9 @@ export class Marker {
     });
   }
   hideOverlay() {
+    if (!this.overlay) {
+      return;
+    }
     this.overlayActive = false;
     setTimeout(() => {
       if (this.overlayActive === false) {

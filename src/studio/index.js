@@ -98,6 +98,9 @@ setInterval(updateStudioProfileClocks, 30_000);
 //********* PROFILE OVERLAY *********//
 
 const handleDisplayCanvasProfile = (event) => {
+  if (lenis) {
+    lenis.stop();
+  }
   const dataValue = event?.currentTarget?.dataset?.value;
   if (dataValue) {
     const overlay = document.querySelector(
@@ -121,6 +124,9 @@ const handleCloseCanvasProfile = (event) => {
     opacity: 0,
     onComplete: function () {
       openedOverlay.style.display = "none";
+      if (lenis) {
+        lenis.start();
+      }
     },
   });
 };
