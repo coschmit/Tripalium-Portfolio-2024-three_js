@@ -158,5 +158,5 @@ html.lenis {
 /* CONTACT SECTION */
 .contact-section .contact-section-row .arrow {
   will-change: transform;
-  cursor: default;
+  cursor: pointer;
 }

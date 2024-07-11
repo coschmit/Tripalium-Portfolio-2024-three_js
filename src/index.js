@@ -79,15 +79,12 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // NAVBAR HOVER BLURRY ANIMATION
-  const navBarLinks = document.querySelectorAll(".navigation .link");
 
-  navBarLinks.forEach((navBarLink) => {
-    navBarLink.addEventListener("mouseenter", () => {
-      navigationBar.classList.add("hovered");
-    });
-    navBarLink.addEventListener("mouseleave", () => {
-      navigationBar.classList.remove("hovered");
-    });
+  navigationBar.addEventListener("mouseenter", () => {
+    navigationBar.classList.add("hovered");
+  });
+  navigationBar.addEventListener("mouseleave", () => {
+    navigationBar.classList.remove("hovered");
   });
 
   // **  VALOR CONTAINER - tags hover animation ** //
@@ -126,9 +123,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // HIDE NAVBAR AFTER FOOTER
   if (navigationBar && (contactSection || footer)) {
+    const pathname = window.location.pathname;
+
+    const start = pathname === "/" ? "top 30%" : "top 80%";
+    const trigger =
+      pathname === "/"
+        ? ".company-description-section"
+        : contactSection ?? footer;
     ScrollTrigger.create({
-      trigger: contactSection ?? footer,
-      start: "top 80%",
+      trigger: trigger,
+      start: start,
       onToggle: (self) => {
         if (self.isActive === true && self.direction === 1) {
           gsap.to(navigationBar, {

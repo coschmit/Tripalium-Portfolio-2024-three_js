@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+  //* LOADING SCREEN ANIMATION
   let tl = gsap.timeline();
   tl.to(".home-loading-icon-wrapper", { opacity: 1, duration: 0.4 })
     .to(".home-loading-icon-wrapper", { rotate: 0, duration: 0.5 }, "<")
@@ -8,7 +9,17 @@ document.addEventListener("DOMContentLoaded", function () {
       delay: 0.4,
       ease: "power2.out",
     })
-    .to(".home-loading-icon-wrapper", { y: -150, opacity: 0 }, "<")
+    .to(
+      ".home-loading-icon-wrapper",
+      {
+        y: -150,
+        opacity: 0,
+        onComplete: () => {
+          gsap.set(".home-loading-icon-wrapper", { display: "none" });
+        },
+      },
+      "<"
+    )
     .fromTo(
       ".nasa-apollo-mobile-screenshots",
       { opacity: 0, y: 50 },
@@ -29,7 +40,7 @@ const companyDescriptionSection = document.querySelector(
 );
 const valorsContainer = document.querySelector(".valors-container");
 ScrollTrigger.create({
-  trigger: ".company-description-section",
+  trigger: companyDescriptionSection,
   start: "top 30%",
   onToggle: (self) => {
     if (self.isActive === true && self.direction === 1) {
