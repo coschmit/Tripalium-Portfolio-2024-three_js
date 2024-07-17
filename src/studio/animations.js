@@ -3,15 +3,32 @@ gsap.registerPlugin(ScrollTrigger);
 // *** CIRCLES ANIMATION *** //
 
 const circleDivs = document.querySelectorAll(".studio-circles-circle-wrapper");
+const screenWidth = window.innerWidth;
+let circleSpacing = 20;
+if (screenWidth <= 991) {
+  circleSpacing = 16;
+}
+if (screenWidth <= 448) {
+  circleSpacing = -30;
+}
+
+const isMobile = screenWidth <= 478;
+const nbOfCircles = 3;
+const xDisplacement =
+  screenWidth -
+  nbOfCircles * (circleDivs[0].offsetWidth + circleSpacing) +
+  circleSpacing;
+
 circleDivs.forEach((circleDiv) => {
   gsap.to(circleDiv, {
-    y: 0,
-    ease: "none",
+    y: isMobile ? undefined : 0,
+    x: xDisplacement,
+    ease: "power1.inOut",
     scrollTrigger: {
       trigger: circleDivs[0],
-      start: "top 40%",
-      end: "top top",
-      scrub: true,
+      start: "top 60%",
+      end: "top+=100px top",
+      scrub: 1,
     },
   });
 });
@@ -90,7 +107,7 @@ function animateSprintCards() {
   } else {
     for (let index = 0; index < 2; index++) {
       const item = agendaItems[index];
-      const delay = index * 0.5;
+      const delay = index * 1.5;
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: ".studio-agenda-container",

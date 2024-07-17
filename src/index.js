@@ -89,6 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // **  VALOR CONTAINER - tags hover animation ** //
   //
+  const valorsContainer = document.querySelector(".valors-container");
   const tags = document.querySelectorAll(
     ".valors-container .valor-row .valors-tags-container .tag"
   );
@@ -96,30 +97,31 @@ document.addEventListener("DOMContentLoaded", function () {
     ".valors-container .valor-row .valors-tags-details-container .valors-tags-details-item"
   );
 
-  tags.forEach((tag, index) => {
-    tag.addEventListener("mouseenter", () => {
-      // Vérifier tous les tags pour réinitialiser le zIndex et éviter au saut d'affichage
-      tags.forEach((t) => {
-        if (t.style.zIndex === "2") {
-          t.style.zIndex = "initial";
-        }
+  if (window.innerWidth > 991) {
+    tags.forEach((tag, index) => {
+      tag.addEventListener("mouseenter", () => {
+        // Vérifier tous les tags pour réinitialiser le zIndex et éviter au saut d'affichage
+        tags.forEach((t) => {
+          if (t.style.zIndex === "2") {
+            t.style.zIndex = "initial";
+          }
+        });
+
+        tagsDetail[index].classList.add("active");
+        tag.style.zIndex = 2;
+
+        valorsContainer.classList.add("blurred");
       });
+      tag.addEventListener("mouseleave", () => {
+        tagsDetail[index].classList.remove("active");
+        setTimeout(() => {
+          tag.style.zIndex = "initial";
+        }, 200);
 
-      tagsDetail[index].classList.add("active");
-      tag.style.zIndex = 2;
-      // using navigation blur
-      navigationBar.classList.add("hovered");
+        valorsContainer.classList.remove("blurred");
+      });
     });
-    tag.addEventListener("mouseleave", () => {
-      tagsDetail[index].classList.remove("active");
-      setTimeout(() => {
-        tag.style.zIndex = "initial";
-      }, 200);
-
-      // using navigation blur
-      navigationBar.classList.remove("hovered");
-    });
-  });
+  }
 
   // HIDE NAVBAR AFTER FOOTER
   if (navigationBar && (contactSection || footer)) {
@@ -139,16 +141,16 @@ document.addEventListener("DOMContentLoaded", function () {
             opacity: 0,
             duration: 0.2,
             onComplete: () => {
-              navigationBar.style.display = "none";
+              gsap.set(".nav-child", { display: "none" });
+              gsap.set(navigationBar, { opacity: 1 });
             },
           });
         } else if (self.isActive === false && self.direction === -1) {
+          gsap.set(navigationBar, { opacity: 0 });
+          gsap.set(".nav-child", { display: "flex" });
           gsap.to(navigationBar, {
             opacity: 1,
             duration: 0.4,
-            onComplete: () => {
-              navigationBar.style.display = "inline-flex";
-            },
           });
         }
       },

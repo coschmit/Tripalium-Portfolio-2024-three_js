@@ -105,7 +105,7 @@ html.lenis {
   opacity: 1;
 }
 .navigation .nav-child {
-  z-index: initial;
+  z-index: 0;
 }
 .navigation.hovered .nav-child {
   z-index: 10;
@@ -113,10 +113,17 @@ html.lenis {
 
 /* VALORS SECTION */
 .company-description-section,
-.valors-container,
-.valors-container .valor-row > h1 {
+.valors-container {
   transition: background 0.5s ease-in-out;
 }
+
+.valors-container .blurry-background {
+  z-index: 1;
+}
+.valors-container.blurred .blurry-background {
+  opacity: 1;
+}
+
 .valors-container .valor-row > h1 {
   transition: color 0.5s ease;
 }
@@ -159,4 +166,17 @@ html.lenis {
 .contact-section .contact-section-row .arrow {
   will-change: transform;
   cursor: pointer;
+}
+
+/* LINKS */
+.link-btn-wrapper .left-bracket,
+.link-btn-wrapper .right-bracket {
+  transition: 0.2s ease;
+}
+
+.link-btn-wrapper:hover .left-bracket {
+  left: 1px; /* 3px -> 1px */
+}
+.link-btn-wrapper:hover .right-bracket {
+  right: 1px; /* 3px -> 1px */
 }
