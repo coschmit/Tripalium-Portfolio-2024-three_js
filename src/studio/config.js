@@ -1,10 +1,29 @@
+export const CAMERA_SETTINGS = {
+  fov: 15,
+  z: 8,
+};
+
+export const BREAKPOINTS = {
+  SM: 0,
+  MD: 478,
+  LG: 991,
+  XL: 1440,
+};
+
+export const SPHERE_SCALE = {
+  SM: 0.5,
+  MD: 0.75,
+  LG: 1,
+  XL: 1.1,
+};
+
 export const groups = {
   main: null,
   globe: null,
   markers: null,
 };
 
-export const elements = { markers: [] };
+export const elements = { markers: [], globeStaticCircle: null };
 
 export const markersConfig = [
   {

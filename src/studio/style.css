@@ -19,6 +19,18 @@ body {
   position: relative;
 }
 
+.earth-static-circle {
+  aspect-ratio: 1 / 1;
+  pointer-events: none;
+  border-radius: 100%;
+  /* width: 464px; */
+  position: absolute;
+  border: 3px solid red;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .canvas-profile {
   display: inline-flex;
   flex-direction: column;

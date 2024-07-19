@@ -1,12 +1,19 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
-import { groups } from "./config.js";
+import {
+  BREAKPOINTS,
+  CAMERA_SETTINGS,
+  groups,
+  SPHERE_SCALE,
+} from "./config.js";
+import { setStaticEarthCircleSize } from "./utils.js";
 
 export class App {
-  constructor({ animate, setup, onPointerMove }) {
+  constructor({ animate, setup, onPointerMove, onCanvasReady }) {
     this.animate = animate;
     this.setup = setup;
     this.onPointerMove = onPointerMove;
+    this.onCanvasReady = onCanvasReady;
 
     this.scene = null;
     this.renderer = null;
@@ -60,15 +67,29 @@ export class App {
 
   initCamera = () => {
     this.ratio = window.innerWidth / window.innerHeight;
-    this.camera = new THREE.PerspectiveCamera(20, this.ratio, 0.1, 1000);
-    this.camera.position.z = 9;
+    this.camera = new THREE.PerspectiveCamera(
+      CAMERA_SETTINGS.fov,
+      this.ratio,
+      0.1,
+      1000
+    );
+    this.camera.position.z = CAMERA_SETTINGS.z;
     this.camera.layers.enable(1);
   };
 
   initControls = () => {
     this.controls = new OrbitControls(app.camera, app.renderer.domElement);
+    this.updateControlsSettings();
+  };
+  updateControlsSettings = () => {
+    if (window.innerWidth >= BREAKPOINTS.LG) {
+      this.controls.enabled = true;
+      this.controls.enableDamping = true;
+    } else {
+      this.controls.enabled = false;
+      this.controls.enableDamping = false;
+    }
     this.controls.autoRotate = true;
-    this.controls.enableDamping = true;
     this.controls.enablePan = false;
     this.controls.enableZoom = false;
     this.controls.update();
@@ -83,12 +104,14 @@ export class App {
   };
 
   updateObjectsGroupScale = () => {
-    if (window.innerWidth < 480) {
-      groups.main.scale.set(0.5, 0.5, 0.5);
-    } else if (window.innerWidth < 768) {
-      groups.main.scale.set(0.75, 0.75, 0.75);
+    if (window.innerWidth < BREAKPOINTS.MD) {
+      groups.main.scale.set(SPHERE_SCALE.SM, SPHERE_SCALE.SM, SPHERE_SCALE.SM);
+    } else if (window.innerWidth < BREAKPOINTS.LG) {
+      groups.main.scale.set(SPHERE_SCALE.MD, SPHERE_SCALE.MD, SPHERE_SCALE.MD);
+    } else if (window.innerWidth < BREAKPOINTS.XL) {
+      groups.main.scale.set(SPHERE_SCALE.LG, SPHERE_SCALE.LG, SPHERE_SCALE.LG);
     } else {
-      groups.main.scale.set(1, 1, 1);
+      groups.main.scale.set(SPHERE_SCALE.XL, SPHERE_SCALE.XL, SPHERE_SCALE.XL);
     }
   };
 
@@ -96,7 +119,13 @@ export class App {
     this.camera.aspect = window.innerWidth / window.innerHeight;
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.camera.updateProjectionMatrix();
+
+    // resize globe based on breakpoints
     this.updateObjectsGroupScale();
+    this.updateControlsSettings();
+
+    // static circle earth
+    setStaticEarthCircleSize();
   };
 
   render = () => {
@@ -105,6 +134,8 @@ export class App {
     earthContainer.appendChild(this.renderer.domElement);
 
     this.updateObjectsGroupScale();
+
+    this.onCanvasReady();
   };
 
   update = () => {

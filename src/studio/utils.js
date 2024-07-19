@@ -1,4 +1,9 @@
-import { groups } from "./config.js";
+import {
+  BREAKPOINTS,
+  CAMERA_SETTINGS,
+  groups,
+  SPHERE_SCALE,
+} from "./config.js";
 import { animateFocusMarkerLocation, unFocusMakerLocation } from "./Markers.js";
 
 export const toSphereCoordinates = (lat, lng, scale) => {
@@ -57,3 +62,38 @@ export function debounce(func, wait) {
     timeout = setTimeout(() => func.apply(context, args), wait);
   };
 }
+
+export const threeUnitsToPx = (units, canvasHeight) => {
+  // Get the camera's FOV in radians
+  const fov = CAMERA_SETTINGS.fov * (Math.PI / 180);
+
+  // Calculate the height of the view at the camera's distance
+  const viewHeight = 2 * Math.tan(fov / 2) * CAMERA_SETTINGS.z;
+
+  // Calculate the conversion factor from three.js units to pixels
+  const conversionFactor = canvasHeight / viewHeight;
+
+  // Convert three.js units to pixels
+  return units * conversionFactor;
+};
+
+export const setStaticEarthCircleSize = () => {
+  const canvas = document.querySelector("#earth-canvas-section canvas");
+  const staticCircle = document.querySelector(".earth-static-circle");
+  if (canvas) {
+    const scale =
+      window.innerWidth < BREAKPOINTS.MD
+        ? SPHERE_SCALE.SM
+        : window.innerWidth < BREAKPOINTS.LG
+        ? SPHERE_SCALE.MD
+        : window.innerWidth < BREAKPOINTS.XL
+        ? SPHERE_SCALE.LG
+        : SPHERE_SCALE.XL;
+
+    const sphereRadius = 1 * scale;
+    const canvasHeight = canvas.clientHeight;
+    const circleRadius = threeUnitsToPx(sphereRadius, canvasHeight);
+    // set the static earth circle size
+    staticCircle.style.width = `${circleRadius * 2}px`;
+  }
+};

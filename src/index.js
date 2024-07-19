@@ -176,25 +176,25 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
   }
-});
 
-// GIF ANIMATION
-const animatedGifImagesGroups = document.querySelectorAll(
-  ".animated-gif-images"
-);
+  // GIF ANIMATION
+  const animatedGifImagesGroups = document.querySelectorAll(
+    ".animated-gif-images"
+  );
 
-animatedGifImagesGroups.forEach((animatedGifImages) => {
-  const childrenCount = animatedGifImages.childElementCount;
-  let activeNb = 0;
-  setInterval(() => {
-    animatedGifImages.children[
-      activeNb === 0 ? childrenCount - 1 : activeNb - 1
-    ].style.zIndex = 0;
-    animatedGifImages.children[activeNb].style.zIndex = 1;
-    if (activeNb < childrenCount - 1) {
-      activeNb++;
-    } else {
-      activeNb = 0;
-    }
-  }, 500);
+  animatedGifImagesGroups.forEach((animatedGifImages) => {
+    const childrenCount = animatedGifImages.childElementCount;
+    let activeNb = 0;
+    setInterval(() => {
+      animatedGifImages.children[
+        activeNb === 0 ? childrenCount - 1 : activeNb - 1
+      ].style.zIndex = 0;
+      animatedGifImages.children[activeNb].style.zIndex = 1;
+      if (activeNb < childrenCount - 1) {
+        activeNb++;
+      } else {
+        activeNb = 0;
+      }
+    }, 500);
+  });
 });

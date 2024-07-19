@@ -1,11 +1,16 @@
 import * as THREE from "three";
 import { App } from "./App.js";
 
-import { config, elements, groups } from "./config.js";
+import { elements, groups } from "./config.js";
 import { Globe } from "./Globe.js";
 import { Markers } from "./Markers.js";
 import { handleMarkerHover } from "./Markers.js";
-import { debounce, handleCanvasProfileOver, updateClocks } from "./utils.js";
+import {
+  debounce,
+  handleCanvasProfileOver,
+  setStaticEarthCircleSize,
+  updateClocks,
+} from "./utils.js";
 
 // 0xe51111
 
@@ -25,6 +30,10 @@ const setup = (app) => {
   handleCanvasProfileOver(app);
 };
 
+const onCanvasReady = () => {
+  setStaticEarthCircleSize();
+};
+
 const animate = (app) => {
   if (elements.markers) {
     for (let i = 0; i < elements.markers.length; i++) {
@@ -40,9 +49,10 @@ const onPointerMove = (app) => {
   handleMarkerHover(app);
 };
 
-const app = new App({ setup, animate, onPointerMove });
+const app = new App({ setup, animate, onPointerMove, onCanvasReady });
 
 window.onload = app.init;
+
 window.onresize = debounce(app.resizeCanvas, 500);
 
 var splide1 = new Splide("#studio-profile-splide-paul", {
