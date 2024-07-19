@@ -13,8 +13,8 @@ export const BREAKPOINTS = {
 export const SPHERE_SCALE = {
   SM: 0.5,
   MD: 0.75,
-  LG: 1,
-  XL: 1.1,
+  LG: 0.9,
+  XL: 1,
 };
 
 export const groups = {

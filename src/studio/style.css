@@ -32,6 +32,7 @@ body {
 }
 
 .canvas-profile {
+  opacity: 0;
   display: inline-flex;
   flex-direction: column;
   align-items: stretch;

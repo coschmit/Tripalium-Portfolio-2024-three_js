@@ -125,6 +125,7 @@ const handleDisplayCanvasProfile = (event) => {
 };
 
 const handleCloseCanvasProfile = (event) => {
+  event.preventDefault();
   const openedOverlay = [
     ...document.querySelectorAll(".profile-detail-overlay"),
   ].find((elem) => elem.style.display === "block");
@@ -132,7 +133,7 @@ const handleCloseCanvasProfile = (event) => {
   gsap.to(openedOverlay, {
     duration: 0.4,
     opacity: 0,
-    onComplete: function () {
+    onComplete: () => {
       openedOverlay.style.display = "none";
       if (lenis) {
         lenis.start();
@@ -149,9 +150,12 @@ canvasProfiles.forEach((canvasProfile) => {
 
 //*** hide profile overlay ***//
 //TODO update with the real close button
-const profileDetailsNames = document.querySelectorAll(
-  ".profile-detail-info-name"
+const profileOverlayDetailCloseBtns = document.querySelectorAll(
+  ".profile-detail-overlay-close-btn .link-btn-wrapper"
 );
-profileDetailsNames.forEach((profileDetailsName) => {
-  profileDetailsName.addEventListener("click", handleCloseCanvasProfile);
+profileOverlayDetailCloseBtns.forEach((profileOverlayDetailCloseBtn) => {
+  profileOverlayDetailCloseBtn.addEventListener(
+    "click",
+    handleCloseCanvasProfile
+  );
 });

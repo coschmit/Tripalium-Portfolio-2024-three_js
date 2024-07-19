@@ -122,3 +122,33 @@ function animateSprintCards() {
 }
 
 animateSprintCards();
+
+// CANVAS PROFILES
+gsap.to(".canvas-profile", {
+  scrollTrigger: {
+    trigger: "#earth-canvas-section",
+    start: "top center",
+    toggleActions: "play none none reverse",
+  },
+  duration: 0.4,
+  ease: "power2.inOut",
+  opacity: 1,
+});
+
+const navigationBar = document.querySelector(".navigation");
+gsap.to(navigationBar, {
+  scrollTrigger: {
+    trigger: "#earth-canvas-section",
+    start: "top center",
+    end: "bottom center",
+    toggleActions: "play reverse play reverse",
+    onEnter: () => gsap.set(".navigation .link", { pointerEvents: "none" }),
+    onEnterBack: () => gsap.set(".navigation .link", { pointerEvents: "none" }),
+    onLeave: () => gsap.set(".navigation .link", { pointerEvents: "auto" }),
+    onLeaveBack: () => gsap.set(".navigation .link", { pointerEvents: "auto" }),
+  },
+
+  duration: 0.2,
+  ease: "power2.inOut",
+  opacity: 0,
+});
