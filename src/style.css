@@ -180,3 +180,11 @@ html.lenis {
 .link-btn-wrapper:hover .right-bracket {
   right: 1px; /* 3px -> 1px */
 }
+
+/* MONOGRAM WHITE */
+.spline-scene-monogram {
+  transition: filter 0.4s linear;
+}
+.spline-scene-monogram.white {
+  filter: saturate(0) brightness(10);
+}

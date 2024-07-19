@@ -32,25 +32,41 @@ document.addEventListener("DOMContentLoaded", function () {
       { opacity: 1, duration: 1, ease: "linear" },
       "<0.5"
     );
-});
 
-// **  VALORS CONTAINER SWITCH ANIMATION ** //
-const companyDescriptionSection = document.querySelector(
-  ".company-description-section"
-);
-const valorsContainer = document.querySelector(".valors-container");
-ScrollTrigger.create({
-  trigger: companyDescriptionSection,
-  start: "top 30%",
-  onToggle: (self) => {
-    if (self.isActive === true && self.direction === 1) {
-      //active
-      companyDescriptionSection.classList.add("variant");
-      valorsContainer.classList.add("variant");
-    } else if (self.isActive === false && self.direction === -1) {
-      // desactive
-      companyDescriptionSection.classList.remove("variant");
-      valorsContainer.classList.remove("variant");
-    }
-  },
+  // **  VALORS CONTAINER SWITCH ANIMATION ** //
+  const companyDescriptionSection = document.querySelector(
+    ".company-description-section"
+  );
+  const valorsContainer = document.querySelector(".valors-container");
+  ScrollTrigger.create({
+    trigger: companyDescriptionSection,
+    start: "top 30%",
+    onToggle: (self) => {
+      if (self.isActive === true && self.direction === 1) {
+        //active
+        companyDescriptionSection.classList.add("variant");
+        valorsContainer.classList.add("variant");
+      } else if (self.isActive === false && self.direction === -1) {
+        // desactive
+        companyDescriptionSection.classList.remove("variant");
+        valorsContainer.classList.remove("variant");
+      }
+    },
+  });
+
+  const splineSceneMonogram = document.querySelector(".spline-scene-monogram");
+
+  ScrollTrigger.create({
+    trigger: ".company-description-section",
+    start: "top top",
+    end: "bottom top",
+    markers: true,
+    onToggle: (self) => {
+      if (self.isActive) {
+        splineSceneMonogram.classList.add("white");
+      } else {
+        splineSceneMonogram.classList.remove("white");
+      }
+    },
+  });
 });
