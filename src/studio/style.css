@@ -33,6 +33,7 @@ body {
 
 .canvas-profile {
   opacity: 0;
+  pointer-events: all;
   display: inline-flex;
   flex-direction: column;
   align-items: stretch;

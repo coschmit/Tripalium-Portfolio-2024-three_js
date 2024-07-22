@@ -55,45 +55,6 @@ window.onload = app.init;
 
 window.onresize = debounce(app.resizeCanvas, 500);
 
-var splide1 = new Splide("#studio-profile-splide-paul", {
-  type: "slide",
-  drag: "free",
-  gap: "20px",
-  snap: true,
-  breakpoints: {
-    991: {
-      gap: "16px",
-    },
-    478: {
-      gap: "10px",
-    },
-  },
-  autoScroll: {
-    speed: 2,
-  },
-});
-
-var splide2 = new Splide("#studio-profile-splide-colin", {
-  type: "slide",
-  drag: "free",
-  gap: "20px",
-  snap: true,
-  breakpoints: {
-    991: {
-      gap: "16px",
-    },
-    478: {
-      gap: "10px",
-    },
-  },
-  autoScroll: {
-    speed: 2,
-  },
-});
-
-splide1.mount();
-splide2.mount();
-
 function updateStudioProfileClocks() {
   const clocksElement = document.querySelectorAll(
     ".profile-detail-info-clock > div"
@@ -104,58 +65,3 @@ function updateStudioProfileClocks() {
 
 updateStudioProfileClocks();
 setInterval(updateStudioProfileClocks, 30_000);
-
-//********* PROFILE OVERLAY *********//
-
-const handleDisplayCanvasProfile = (event) => {
-  if (lenis) {
-    lenis.stop();
-  }
-  const dataValue = event?.currentTarget?.dataset?.value;
-  if (dataValue) {
-    const overlay = document.querySelector(
-      `.profile-detail-overlay.${dataValue}`
-    );
-
-    if (overlay) {
-      overlay.style.display = "block";
-      gsap.to(overlay, { duration: 0.5, opacity: 1 });
-    }
-  }
-};
-
-const handleCloseCanvasProfile = (event) => {
-  event.preventDefault();
-  const openedOverlay = [
-    ...document.querySelectorAll(".profile-detail-overlay"),
-  ].find((elem) => elem.style.display === "block");
-
-  gsap.to(openedOverlay, {
-    duration: 0.4,
-    opacity: 0,
-    onComplete: () => {
-      openedOverlay.style.display = "none";
-      if (lenis) {
-        lenis.start();
-      }
-    },
-  });
-};
-
-//*** display profile overlay ***//
-const canvasProfiles = document.querySelectorAll(".canvas-profile");
-canvasProfiles.forEach((canvasProfile) => {
-  canvasProfile.addEventListener("click", handleDisplayCanvasProfile);
-});
-
-//*** hide profile overlay ***//
-//TODO update with the real close button
-const profileOverlayDetailCloseBtns = document.querySelectorAll(
-  ".profile-detail-overlay-close-btn .link-btn-wrapper"
-);
-profileOverlayDetailCloseBtns.forEach((profileOverlayDetailCloseBtn) => {
-  profileOverlayDetailCloseBtn.addEventListener(
-    "click",
-    handleCloseCanvasProfile
-  );
-});
