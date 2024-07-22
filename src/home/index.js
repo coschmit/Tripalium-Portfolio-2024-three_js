@@ -60,7 +60,6 @@ document.addEventListener("DOMContentLoaded", function () {
     trigger: ".company-description-section",
     start: "top top",
     end: "bottom top",
-    markers: true,
     onToggle: (self) => {
       if (self.isActive) {
         splineSceneMonogram.classList.add("white");
