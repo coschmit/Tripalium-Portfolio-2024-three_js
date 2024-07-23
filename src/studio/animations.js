@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       for (let index = 0; index < 2; index++) {
         const item = agendaItems[index];
-        const delay = index * 1.5;
+        const delay = index * 1;
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: ".studio-agenda-container",
