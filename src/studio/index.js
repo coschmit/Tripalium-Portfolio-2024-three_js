@@ -9,7 +9,6 @@ import {
   debounce,
   handleCanvasProfileOver,
   setStaticEarthCircleSize,
-  updateClocks,
 } from "./utils.js";
 
 // 0xe51111
@@ -54,14 +53,3 @@ const app = new App({ setup, animate, onPointerMove, onCanvasReady });
 window.onload = app.init;
 
 window.onresize = debounce(app.resizeCanvas, 500);
-
-function updateStudioProfileClocks() {
-  const clocksElement = document.querySelectorAll(
-    ".profile-detail-info-clock > div"
-  );
-
-  updateClocks(clocksElement, ["Europe/Paris", "America/Lima"]);
-}
-
-updateStudioProfileClocks();
-setInterval(updateStudioProfileClocks, 30_000);

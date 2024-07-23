@@ -1,5 +1,27 @@
 gsap.registerPlugin(ScrollTrigger);
 
+function getCurrentClockByTimeZone(timeZone) {
+  const options = { hour: "2-digit", minute: "2-digit", hour12: true };
+  return new Date()
+    .toLocaleTimeString("fr-FR", { timeZone, ...options })
+    .replace(/\s/g, "");
+}
+
+function updateStudioProfileClocks() {
+  const clocksElement = document.querySelectorAll(
+    ".profile-detail-info-clock > div"
+  );
+  updateClocks(clocksElement, ["Europe/Paris", "America/Lima"]);
+}
+
+function updateClocks(clocksElement, timeZones) {
+  for (let i = 0; i < clocksElement.length; i++) {
+    const timeZone = timeZones[i];
+
+    clocksElement[i].innerText = getCurrentClockByTimeZone(timeZone);
+  }
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   // *** CIRCLES ANIMATION *** //
 
@@ -38,11 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // *** SPRINT CARDS *** //
 
-  const studioAgendaContainer = document.querySelector(
-    ".studio-agenda-container"
-  );
   const agendaItems = document.querySelectorAll(".agenda-item-wrapper");
-  let agendaTimelines = [];
   let timelines = [];
 
   function sprintCardAnimateItems(tl, animation, wrapper) {
@@ -250,4 +268,7 @@ document.addEventListener("DOMContentLoaded", function () {
       handleCloseCanvasProfile
     );
   });
+
+  updateStudioProfileClocks();
+  setInterval(updateStudioProfileClocks, 30_000);
 });

@@ -45,14 +45,6 @@ export function getCurrentClockByTimeZone(timeZone) {
     .replace(/\s/g, "");
 }
 
-export function updateClocks(clocksElement, timeZones) {
-  for (let i = 0; i < clocksElement.length; i++) {
-    const timeZone = timeZones[i];
-
-    clocksElement[i].innerText = getCurrentClockByTimeZone(timeZone);
-  }
-}
-
 export function debounce(func, wait) {
   let timeout;
   return function () {

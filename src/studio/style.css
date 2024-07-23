@@ -31,6 +31,10 @@ body {
   transform: translate(-50%, -50%);
 }
 
+.earth-spline-overlay {
+  pointer-events: none;
+}
+
 .canvas-profile {
   opacity: 0;
   pointer-events: all;
