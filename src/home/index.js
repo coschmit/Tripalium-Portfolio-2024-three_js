@@ -34,6 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
   // **  VALORS CONTAINER SWITCH ANIMATION ** //
+  const contactSection = document.querySelector(".contact-section");
   const companyDescriptionSection = document.querySelector(
     ".company-description-section"
   );
@@ -41,13 +42,33 @@ document.addEventListener("DOMContentLoaded", function () {
   ScrollTrigger.create({
     trigger: companyDescriptionSection,
     start: "top 30%",
+    end: "bottom 50%",
     onToggle: (self) => {
-      if (self.isActive === true && self.direction === 1) {
+      if (
+        (self.isActive === true && self.direction === 1) ||
+        (self.isActive === true && self.direction === -1)
+      ) {
         //active
+        gsap.to("body", {
+          backgroundColor: "#e51111",
+          duration: 0.5,
+          ease: "power1.inOut",
+        });
+
+        contactSection.classList.add("variant");
         companyDescriptionSection.classList.add("variant");
         valorsContainer.classList.add("variant");
-      } else if (self.isActive === false && self.direction === -1) {
+      } else if (
+        (self.isActive === false && self.direction === -1) ||
+        (self.isActive === false && self.direction === 1)
+      ) {
         // desactive
+        gsap.to("body", {
+          backgroundColor: "rgba(0,0,0,0)",
+          duration: 0.5,
+          ease: "power1.inOut",
+        });
+        contactSection.classList.remove("variant");
         companyDescriptionSection.classList.remove("variant");
         valorsContainer.classList.remove("variant");
       }
@@ -58,8 +79,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   ScrollTrigger.create({
     trigger: ".company-description-section",
-    start: "top top",
-    end: "bottom top",
+    start: "top 30%",
+    end: "bottom 50%",
     onToggle: (self) => {
       if (self.isActive) {
         splineSceneMonogram.classList.add("white");

@@ -100,22 +100,21 @@ html.lenis {
   z-index: -1;
   opacity: 0;
 }
-.navigation.hovered .blurry-background {
-  z-index: 9;
-  opacity: 1;
-}
-.navigation .nav-child {
-  z-index: 0;
-}
-.navigation.hovered .nav-child {
-  z-index: 10;
+
+@media only screen and (min-width: 479px) {
+  .navigation.hovered .blurry-background {
+    z-index: 9;
+    opacity: 1;
+  }
+  .navigation .nav-child {
+    z-index: 0;
+  }
+  .navigation.hovered .nav-child {
+    z-index: 10;
+  }
 }
 
 /* VALORS SECTION */
-.company-description-section,
-.valors-container {
-  transition: background 0.5s ease-in-out;
-}
 
 .valors-container .blurry-background {
   z-index: 1;
@@ -129,9 +128,6 @@ html.lenis {
 }
 .valors-container .valor-row .valors-tags-container > .tag {
   cursor: default;
-}
-.company-description-section.variant {
-  background-color: var(--primitive-lava--lava-600, #e51111);
 }
 
 .valors-container.variant .valor-row > h1 {
@@ -166,6 +162,13 @@ html.lenis {
 .contact-section .contact-section-row .arrow {
   will-change: transform;
   cursor: pointer;
+}
+
+.contact-section h1 {
+  transition: color 0.5s ease, border 0.5s ease;
+}
+.contact-section.variant h1 {
+  color: white;
 }
 
 /* LINKS */

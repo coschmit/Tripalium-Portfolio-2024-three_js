@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import { config, elements, groups, markersConfig } from "./config.js";
-import { Marker, animateOverlayOpacity } from "./Marker.js";
+import { Marker } from "./Marker.js";
 import { toSphereCoordinates } from "./utils.js";
 
 export class Markers {

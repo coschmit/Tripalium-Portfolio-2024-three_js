@@ -147,7 +147,13 @@ body {
   opacity: 0;
 }
 
-/* .splide__slide { */
-/* width: auto !important; 
-/* Override Splide's width */
-/* } */
+/* SPRINT CARDS */
+
+@media only screen and (min-width: 1920px) {
+  .studio-agenda-container .agenda-item-wrapper {
+    height: 560px;
+  }
+  .studio-agenda-container .agenda-item-wrapper.third-child {
+    display: flex;
+  }
+}

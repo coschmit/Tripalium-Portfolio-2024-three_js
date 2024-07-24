@@ -61,6 +61,10 @@ document.addEventListener("DOMContentLoaded", function () {
   // *** SPRINT CARDS *** //
 
   const agendaItems = document.querySelectorAll(".agenda-item-wrapper");
+  const flexItemsCount = Array.from(agendaItems).filter((item) => {
+    return getComputedStyle(item).display === "flex";
+  }).length;
+
   let timelines = [];
 
   function sprintCardAnimateItems(tl, animation, wrapper) {
@@ -126,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
       sprintCardAnimateItems(tl, "mobile");
       timelines.push(tl);
     } else {
-      for (let index = 0; index < 2; index++) {
+      for (let index = 0; index < flexItemsCount; index++) {
         const item = agendaItems[index];
         const delay = index * 1;
         const tl = gsap.timeline({
