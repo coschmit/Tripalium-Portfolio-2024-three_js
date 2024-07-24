@@ -162,6 +162,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const navigationBar = document.querySelector(".navigation");
   gsap.to(navigationBar, {
+    onComplete: () => {
+      gsap.set(".navigation", { zIndex: -1 });
+    },
     scrollTrigger: {
       trigger: "#earth-canvas-section",
       start: "top center",
@@ -170,9 +173,14 @@ document.addEventListener("DOMContentLoaded", function () {
       onEnter: () => gsap.set(".navigation .link", { pointerEvents: "none" }),
       onEnterBack: () =>
         gsap.set(".navigation .link", { pointerEvents: "none" }),
-      onLeave: () => gsap.set(".navigation .link", { pointerEvents: "auto" }),
-      onLeaveBack: () =>
-        gsap.set(".navigation .link", { pointerEvents: "auto" }),
+      onLeave: () => {
+        gsap.set(".navigation", { zIndex: 1 });
+        gsap.set(".navigation .link", { pointerEvents: "auto" });
+      },
+      onLeaveBack: () => {
+        gsap.set(".navigation", { zIndex: 1 });
+        gsap.set(".navigation .link", { pointerEvents: "auto" });
+      },
     },
 
     duration: 0.2,
