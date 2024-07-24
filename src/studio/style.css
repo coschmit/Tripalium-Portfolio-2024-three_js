@@ -14,10 +14,12 @@ body {
   justify-content: space-between;
 }
 
-#earth-canvas-section {
-  height: 100vh; /* we render a canvas of the height of the screen */
+/* we render a canvas of the height of the screen */
+/* //TODO ACTIVATE IF GOING BACK NO ORIGINAL CANVAS */
+/* #earth-canvas-section {
+  height: 100vh; 
   position: relative;
-}
+} */
 
 .earth-static-circle {
   aspect-ratio: 1 / 1;
