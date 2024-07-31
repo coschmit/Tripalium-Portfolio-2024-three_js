@@ -174,7 +174,7 @@ html.lenis {
 /* LINKS */
 .link-btn-wrapper .left-bracket,
 .link-btn-wrapper .right-bracket {
-  transition: 0.2s ease;
+  transition: left 0.2s ease, right 0.2s ease;
 }
 
 .link-btn-wrapper:hover .left-bracket {

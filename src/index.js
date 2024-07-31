@@ -141,13 +141,13 @@ document.addEventListener("DOMContentLoaded", function () {
             opacity: 0,
             duration: 0.2,
             onComplete: () => {
-              gsap.set(".nav-child", { display: "none" });
+              gsap.set(navigationBar, { display: "none" });
               gsap.set(navigationBar, { opacity: 1 });
             },
           });
         } else if (self.isActive === false && self.direction === -1) {
           gsap.set(navigationBar, { opacity: 0 });
-          gsap.set(".nav-child", { display: "flex" });
+          gsap.set(navigationBar, { display: "flex" });
           gsap.to(navigationBar, {
             opacity: 1,
             duration: 0.4,
