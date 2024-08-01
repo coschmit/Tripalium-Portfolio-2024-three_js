@@ -58,6 +58,19 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+  if (!isMobile) {
+    gsap.to(".studio-circles-container", {
+      paddingBottom: 0,
+      ease: "power1.inOut",
+      scrollTrigger: {
+        trigger: circleDivs[0],
+        start: "top 60%",
+        end: "top+=100px top",
+        scrub: 1,
+      },
+    });
+  }
+
   // *** SPRINT CARDS *** //
 
   const agendaItems = document.querySelectorAll(".agenda-item-wrapper");
@@ -132,7 +145,7 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       for (let index = 0; index < flexItemsCount; index++) {
         const item = agendaItems[index];
-        const delay = index * 1;
+        const delay = index * 0.5;
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: ".studio-agenda-container",
