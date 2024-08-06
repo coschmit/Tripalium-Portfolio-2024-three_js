@@ -53,17 +53,15 @@ document.addEventListener("DOMContentLoaded", function () {
       smoothTouch: false,
     });
 
-    requestAnimationFrame(raf);
+    // requestAnimationFrame(raf);
 
-    lenis.on("scroll", () => {
-      ScrollTrigger.update();
+    lenis.on("scroll", ScrollTrigger.update);
+
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
     });
 
-    // gsap.ticker.add((time) => {
-    //   lenis.raf(time * 1000);
-    // });
-
-    // gsap.ticker.lagSmoothing(0);
+    gsap.ticker.lagSmoothing(0);
   }
   function updateClocks() {
     const clocksElement = document.getElementsByClassName("footer-clock-time");

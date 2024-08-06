@@ -1,4 +1,5 @@
 gsap.registerPlugin(ScrollTrigger);
+// todo use somewhere to test ScrollTrigger.refresh();
 
 document.addEventListener("DOMContentLoaded", function () {
   //* LOADING SCREEN ANIMATION
