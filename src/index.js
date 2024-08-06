@@ -6,6 +6,10 @@ const getNavbarLetterHTML = (text) => {
     .join("\n");
 };
 
+window.addEventListener("load", (event) => {
+  ScrollTrigger.refresh();
+});
+
 let lenis;
 // ANIMATION LOADING
 document.addEventListener("DOMContentLoaded", function () {
