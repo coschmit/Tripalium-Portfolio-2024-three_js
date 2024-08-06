@@ -1,3 +1,5 @@
+gsap.registerPlugin(ScrollTrigger);
+
 document.addEventListener("DOMContentLoaded", function () {
   //* LOADING SCREEN ANIMATION
   let tl = gsap.timeline();
@@ -39,8 +41,9 @@ document.addEventListener("DOMContentLoaded", function () {
     ".company-description-section"
   );
   const valorsContainer = document.querySelector(".valors-container");
+
   ScrollTrigger.create({
-    trigger: companyDescriptionSection,
+    trigger: ".company-description-section",
     start: "top 30%",
     end: "bottom 50%",
     onToggle: (self) => {

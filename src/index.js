@@ -1,3 +1,5 @@
+gsap.registerPlugin(ScrollTrigger);
+
 const getNavbarLetterHTML = (text) => {
   return [...text]
     .map((letter) => `<span class="trplm-link-letter">${letter}</span>`)
@@ -37,6 +39,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // LENIS SMOOTH SCROLL
 
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+
   if (Webflow.env("editor") === undefined) {
     lenis = new Lenis({
       lerp: 0.1,
@@ -46,37 +53,39 @@ document.addEventListener("DOMContentLoaded", function () {
       smoothTouch: false,
     });
 
-    lenis.on("scroll", ScrollTrigger.update);
+    requestAnimationFrame(raf);
 
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
+    lenis.on("scroll", () => {
+      ScrollTrigger.update();
     });
 
-    gsap.ticker.lagSmoothing(0);
+    // gsap.ticker.add((time) => {
+    //   lenis.raf(time * 1000);
+    // });
 
-    function updateClocks() {
-      const clocksElement =
-        document.getElementsByClassName("footer-clock-time");
-      const options = { hour: "2-digit", minute: "2-digit", hour12: true };
-      const timeZones = [
-        { label: "Paris", timeZone: "Europe/Paris" },
-        { label: "Lima", timeZone: "America/Lima" },
-      ];
-
-      if (clocksElement[0] && clocksElement[1]) {
-        clocksElement[0].innerText = new Date()
-          .toLocaleTimeString("fr-FR", { ...timeZones[0], ...options })
-          .replace(/\s/g, "");
-        clocksElement[1].innerText = new Date()
-          .toLocaleTimeString("fr-FR", { ...timeZones[1], ...options })
-          .replace(/\s/g, "");
-      }
-    }
-
-    updateClocks();
-
-    setInterval(updateClocks, 30000);
+    // gsap.ticker.lagSmoothing(0);
   }
+  function updateClocks() {
+    const clocksElement = document.getElementsByClassName("footer-clock-time");
+    const options = { hour: "2-digit", minute: "2-digit", hour12: true };
+    const timeZones = [
+      { label: "Paris", timeZone: "Europe/Paris" },
+      { label: "Lima", timeZone: "America/Lima" },
+    ];
+
+    if (clocksElement[0] && clocksElement[1]) {
+      clocksElement[0].innerText = new Date()
+        .toLocaleTimeString("fr-FR", { ...timeZones[0], ...options })
+        .replace(/\s/g, "");
+      clocksElement[1].innerText = new Date()
+        .toLocaleTimeString("fr-FR", { ...timeZones[1], ...options })
+        .replace(/\s/g, "");
+    }
+  }
+
+  updateClocks();
+
+  setInterval(updateClocks, 30000);
 
   // NAVBAR HOVER BLURRY ANIMATION
 
@@ -131,7 +140,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const trigger =
       pathname === "/"
         ? ".company-description-section"
-        : contactSection ?? footer;
+        : ".contact-section" ?? ".footer";
     ScrollTrigger.create({
       trigger: trigger,
       start: start,
@@ -196,5 +205,13 @@ document.addEventListener("DOMContentLoaded", function () {
         activeNb = 0;
       }
     }, 500);
+  });
+
+  // monogram redirect link
+  const monogramWrapper = document.querySelector(
+    ".spline-scene-monogram-wrapper"
+  );
+  monogramWrapper.addEventListener("click", () => {
+    window.location.replace("/");
   });
 });

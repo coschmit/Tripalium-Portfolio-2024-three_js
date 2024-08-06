@@ -32,7 +32,8 @@ html {
   --primitive-text-transform--uppercase: uppercase !important;
 }
 
-html.lenis {
+html.lenis,
+html.lenis body {
   height: auto;
 }
 .lenis.lenis-smooth {
@@ -80,18 +81,18 @@ html.lenis {
 .trplm-nav-link-wrapper.expended
   .trplm-link-short
   .trplm-link-letter:nth-child(3) {
-  margin-left: 3.4px;
+  margin-left: 0.18rem;
 }
 
 .trplm-nav-link-wrapper.expended
   .trplm-link-short
   .trplm-link-letter:nth-child(4) {
-  margin-left: 8.8px;
+  margin-left: 0.48rem;
 }
 .trplm-nav-link-wrapper.expended
   .trplm-link-short
   .trplm-link-letter:nth-child(5) {
-  margin-left: 13px;
+  margin-left: 0.68rem;
 }
 
 /* BLURRY BACKGROUND */
