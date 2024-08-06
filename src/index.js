@@ -194,6 +194,7 @@ document.addEventListener("DOMContentLoaded", function () {
   );
 
   animatedGifImagesGroups.forEach((animatedGifImages) => {
+    const delay = animatedGifImages.dataset.delay ?? 500;
     const childrenCount = animatedGifImages.childElementCount;
     let activeNb = 0;
     setInterval(() => {
@@ -206,7 +207,7 @@ document.addEventListener("DOMContentLoaded", function () {
       } else {
         activeNb = 0;
       }
-    }, 500);
+    }, delay);
   });
 
   // monogram redirect link
