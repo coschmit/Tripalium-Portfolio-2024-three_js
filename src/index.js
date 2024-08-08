@@ -217,11 +217,18 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // FIX GRID IMAGES RESPONSIVENESS
-  const gridImages = document.querySelectorAll(".grid img");
-  gridImages.forEach((image) => {
-    const imageWidth = image.offsetWidth;
-    const imageVW = (imageWidth / window.innerWidth) * 100;
-    const correctSizesAttribute = `(min-width: 480px) ${imageVW}vw, 100vw)`;
-    image.setAttribute("sizes", correctSizesAttribute);
+  const fixGridImagesResponsiveness = () => {
+    const gridImages = document.querySelectorAll(".grid img");
+    gridImages.forEach((image) => {
+      const imageWidth = image.offsetWidth;
+      const imageVW = (imageWidth / window.innerWidth) * 100;
+      const correctSizesAttribute = `(min-width: 480px) ${imageVW}vw, 100vw)`;
+      image.setAttribute("sizes", correctSizesAttribute);
+    });
+  };
+  fixGridImagesResponsiveness();
+
+  window.addEventListener("resize", () => {
+    fixGridImagesResponsiveness();
   });
 });
