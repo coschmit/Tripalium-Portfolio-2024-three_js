@@ -38,8 +38,6 @@ document.addEventListener("DOMContentLoaded", function () {
   // ******************************************* //
   // ******************************************* //
   // ******************************************* //
-  // ******************************************* //
-  // ******************************************* //
 
   // LENIS SMOOTH SCROLL
 
@@ -216,5 +214,14 @@ document.addEventListener("DOMContentLoaded", function () {
   );
   monogramWrapper.addEventListener("click", () => {
     window.location.replace("/");
+  });
+
+  // FIX GRID IMAGES RESPONSIVENESS
+  const gridImages = document.querySelectorAll(".grid img");
+  gridImages.forEach((image) => {
+    const imageWidth = image.offsetWidth;
+    const imageVW = (imageWidth / window.innerWidth) * 100;
+    const correctSizesAttribute = `(min-width: 480px) ${imageVW}vw, 100vw)`;
+    image.setAttribute("sizes", correctSizesAttribute);
   });
 });
