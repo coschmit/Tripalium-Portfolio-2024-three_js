@@ -1,5 +1,7 @@
 gsap.registerPlugin(ScrollTrigger);
 
+const TRIPALIUM_EMAIL = "colin@tripalium-studio.com";
+
 const getNavbarLetterHTML = (text) => {
   return [...text]
     .map((letter) => `<span class="trplm-link-letter">${letter}</span>`)
@@ -172,16 +174,67 @@ document.addEventListener("DOMContentLoaded", function () {
     const contactSectionArrow = document.querySelector(
       ".contact-section .contact-section-row .arrow"
     );
+
     if (contactSectionArrow) {
-      const enterParams = { x: 10, y: -10, duration: 0.2 };
-      const leaveParams = { x: 0, y: 0, duration: 0.2 };
+      let tl = gsap.timeline({ repeat: -1, repeatDelay: 0, paused: true });
+
+      const arrowEnterParams = { x: 10, y: -10, duration: 0.2 };
+      const arrowLeaveParams = { x: 0, y: 0, duration: 0.2 };
+      const emailRevealParams = { width: "100%", duration: 0.4 };
+      const emailHideParams = {
+        width: "0%",
+        duration: 0.4,
+        onComplete: () => {
+          tl.pause();
+          tl.seek(0);
+          gsap.set(
+            [".copy-email-popup.clicked", ".copy-email-popup.clicked-2"],
+            { top: "100%" }
+          );
+        },
+      };
+
+      // tl.to(".copy-email-popup.clicked", { top: "0%", duration: 1 });
+      tl.to(
+        ".copy-email-popup.clicked",
+        {
+          top: "-100%",
+          duration: 0.5,
+        },
+        "<1.5"
+      )
+        .to(".copy-email-popup.clicked-2", { top: "0%", duration: 0.5 }, "<")
+        .set(".copy-email-popup.clicked", { top: "100%" })
+        .to(
+          ".copy-email-popup.clicked-2",
+          {
+            top: "-100%",
+            duration: 0.5,
+          },
+          "<1.5"
+        )
+        .to(".copy-email-popup.clicked", { top: "0%", duration: 0.5 }, "<")
+        .set("copy-email-popup.clicked-2", { top: "100%" });
 
       contactSectionArrow.addEventListener("mouseenter", () => {
-        gsap.to(contactSectionArrow, enterParams);
+        gsap.to(contactSectionArrow, arrowEnterParams);
+        gsap.to(".copy-email-popup-reveal", emailRevealParams);
       });
 
       contactSectionArrow.addEventListener("mouseleave", () => {
-        gsap.to(contactSectionArrow, leaveParams);
+        gsap.to(contactSectionArrow, arrowLeaveParams);
+        gsap.to(".copy-email-popup-reveal", emailHideParams);
+      });
+
+      contactSectionArrow.addEventListener("click", () => {
+        navigator.clipboard.writeText(TRIPALIUM_EMAIL);
+        gsap.to(".copy-email-popup.clicked", {
+          top: "0%",
+          duration: 0.5,
+          onComplete: () => {
+            tl.play();
+          },
+        });
       });
     }
   }
