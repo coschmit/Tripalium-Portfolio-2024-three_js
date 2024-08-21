@@ -1,3 +1,7 @@
+import { lenis } from "../index.js";
+import { studioElementsToTranslate } from "../localization.js";
+import { updateLanguageTexts } from "../utils.js";
+
 gsap.registerPlugin(ScrollTrigger);
 
 function getCurrentClockByTimeZone(timeZone) {
@@ -297,3 +301,18 @@ document.addEventListener("DOMContentLoaded", function () {
   updateStudioProfileClocks();
   setInterval(updateStudioProfileClocks, 30_000);
 });
+
+// **   START LOCALIZATION  ** //
+
+document.getElementById("switch-fr").addEventListener("click", function () {
+  updateLanguageTexts(studioElementsToTranslate, "fr");
+});
+
+document.getElementById("switch-en").addEventListener("click", function () {
+  updateLanguageTexts(studioElementsToTranslate, "en");
+});
+
+const savedLang = localStorage.getItem("selectedLang") || "fr";
+updateLanguageTexts(studioElementsToTranslate, savedLang);
+
+// **   END LOCALIZATION  ** //

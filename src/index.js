@@ -1,5 +1,12 @@
+import { globalElementsToTranslate } from "./localization.js";
+import {
+  switchNavigationLanguageSelected,
+  updateLanguageTexts,
+} from "./utils.js";
+
 gsap.registerPlugin(ScrollTrigger);
 
+export let lenis;
 const TRIPALIUM_EMAIL = "colin@tripalium-studio.com";
 
 const getNavbarLetterHTML = (text) => {
@@ -12,7 +19,6 @@ window.addEventListener("load", (event) => {
   ScrollTrigger.refresh();
 });
 
-let lenis;
 // ANIMATION LOADING
 document.addEventListener("DOMContentLoaded", function () {
   // ******************* GET DOM ************************ //
@@ -22,31 +28,28 @@ document.addEventListener("DOMContentLoaded", function () {
   // ******************************************* //
 
   // ** TRPLM LINK NAVBAR ** //
-  const trplmLinkWrapper = document.getElementById("trplm-nav-link");
-  const trplmLinkShort = document.querySelector(".trplm-link-short");
+  if (navigationBar) {
+    const trplmLinkWrapper = document.getElementById("trplm-nav-link");
+    const trplmLinkShort = document.querySelector(".trplm-link-short");
 
-  const trplmLinkFull = document.querySelector(".trplm-link-full");
+    const trplmLinkFull = document.querySelector(".trplm-link-full");
 
-  trplmLinkShort.innerHTML = getNavbarLetterHTML("TRPLM");
-  trplmLinkFull.innerHTML = getNavbarLetterHTML("TRIPALIUM");
+    trplmLinkShort.innerHTML = getNavbarLetterHTML("TRPLM");
+    trplmLinkFull.innerHTML = getNavbarLetterHTML("TRIPALIUM");
 
-  trplmLinkWrapper.addEventListener("mouseenter", () => {
-    trplmLinkWrapper.classList.add("expended");
-  });
-  trplmLinkWrapper.addEventListener("mouseleave", () => {
-    trplmLinkWrapper.classList.remove("expended");
-  });
+    trplmLinkWrapper.addEventListener("mouseenter", () => {
+      trplmLinkWrapper.classList.add("expended");
+    });
+    trplmLinkWrapper.addEventListener("mouseleave", () => {
+      trplmLinkWrapper.classList.remove("expended");
+    });
+  }
 
   // ******************************************* //
   // ******************************************* //
   // ******************************************* //
 
   // LENIS SMOOTH SCROLL
-
-  function raf(time) {
-    lenis.raf(time);
-    requestAnimationFrame(raf);
-  }
 
   if (Webflow.env("editor") === undefined) {
     lenis = new Lenis({
@@ -56,8 +59,6 @@ document.addEventListener("DOMContentLoaded", function () {
       normalizeWheel: false,
       smoothTouch: false,
     });
-
-    // requestAnimationFrame(raf);
 
     lenis.on("scroll", ScrollTrigger.update);
 
@@ -90,13 +91,14 @@ document.addEventListener("DOMContentLoaded", function () {
   setInterval(updateClocks, 30000);
 
   // NAVBAR HOVER BLURRY ANIMATION
-
-  navigationBar.addEventListener("mouseenter", () => {
-    navigationBar.classList.add("hovered");
-  });
-  navigationBar.addEventListener("mouseleave", () => {
-    navigationBar.classList.remove("hovered");
-  });
+  if (navigationBar) {
+    navigationBar.addEventListener("mouseenter", () => {
+      navigationBar.classList.add("hovered");
+    });
+    navigationBar.addEventListener("mouseleave", () => {
+      navigationBar.classList.remove("hovered");
+    });
+  }
 
   // **  VALOR CONTAINER - tags hover animation ** //
   //
@@ -142,7 +144,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const trigger =
       pathname === "/"
         ? ".company-description-section"
-        : ".contact-section" ?? ".footer";
+        : document.querySelector(".contact-section") !== null
+        ? ".contact-section"
+        : ".footer";
     ScrollTrigger.create({
       trigger: trigger,
       start: start,
@@ -176,45 +180,44 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
     if (contactSectionArrow) {
-      let tl = gsap.timeline({ repeat: -1, repeatDelay: 0, paused: true });
+      let copyEmailIsClicked = false;
+      const COPY_EMAIL_CLICK_ANIMATION_DURATION = 4_500;
+      let tl = gsap.timeline({ paused: true }); // (optional: repeat: -1)
 
       const arrowEnterParams = { x: 10, y: -10, duration: 0.2 };
       const arrowLeaveParams = { x: 0, y: 0, duration: 0.2 };
-      const emailRevealParams = { width: "100%", duration: 0.4 };
+      const emailRevealParams = {
+        width: "100%",
+        duration: 0.4,
+        onStart: () => {
+          // gsap.set(".copy-email-popup-reveal", { display: "block" });
+        },
+      };
       const emailHideParams = {
         width: "0%",
         duration: 0.4,
         onComplete: () => {
           tl.pause();
           tl.seek(0);
-          gsap.set(
-            [".copy-email-popup.clicked", ".copy-email-popup.clicked-2"],
-            { top: "100%" }
-          );
+          copyEmailIsClicked = false;
+          // gsap.set(".copy-email-popup-reveal", { display: "none" });
         },
       };
 
-      // tl.to(".copy-email-popup.clicked", { top: "0%", duration: 1 });
-      tl.to(
-        ".copy-email-popup.clicked",
-        {
-          top: "-100%",
-          duration: 0.5,
-        },
-        "<1.5"
-      )
-        .to(".copy-email-popup.clicked-2", { top: "0%", duration: 0.5 }, "<")
-        .set(".copy-email-popup.clicked", { top: "100%" })
+      tl.to(".copy-email-popup.clicked", {
+        top: "0%",
+        duration: 0.5,
+      })
+        .to(".copy-email-popup.clicked", { top: "0%", duration: 1 })
         .to(
-          ".copy-email-popup.clicked-2",
+          ".copy-email-popup.clicked",
           {
             top: "-100%",
             duration: 0.5,
           },
           "<1.5"
         )
-        .to(".copy-email-popup.clicked", { top: "0%", duration: 0.5 }, "<")
-        .set("copy-email-popup.clicked-2", { top: "100%" });
+        .to(".copy-email-popup.clicked-2", { top: "0%", duration: 0.5 }, "<");
 
       contactSectionArrow.addEventListener("mouseenter", () => {
         gsap.to(contactSectionArrow, arrowEnterParams);
@@ -223,18 +226,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
       contactSectionArrow.addEventListener("mouseleave", () => {
         gsap.to(contactSectionArrow, arrowLeaveParams);
-        gsap.to(".copy-email-popup-reveal", emailHideParams);
+        if (copyEmailIsClicked === false) {
+          gsap.to(".copy-email-popup-reveal", emailHideParams);
+        }
       });
 
       contactSectionArrow.addEventListener("click", () => {
         navigator.clipboard.writeText(TRIPALIUM_EMAIL);
-        gsap.to(".copy-email-popup.clicked", {
-          top: "0%",
-          duration: 0.5,
-          onComplete: () => {
-            tl.play();
-          },
-        });
+
+        if (copyEmailIsClicked === false) {
+          tl.play();
+
+          copyEmailIsClicked = true;
+
+          setTimeout(() => {
+            gsap.to(".copy-email-popup-reveal", emailHideParams);
+          }, COPY_EMAIL_CLICK_ANIMATION_DURATION);
+        }
       });
     }
   }
@@ -265,13 +273,18 @@ document.addEventListener("DOMContentLoaded", function () {
   const monogramWrapper = document.querySelector(
     ".spline-scene-monogram-wrapper"
   );
-  monogramWrapper.addEventListener("click", () => {
-    window.location.replace("/");
-  });
+
+  if (monogramWrapper) {
+    monogramWrapper.addEventListener("click", () => {
+      window.location.replace("/");
+    });
+  }
 
   // FIX GRID IMAGES RESPONSIVENESS
   const fixGridImagesResponsiveness = () => {
-    const gridImages = document.querySelectorAll(".grid img");
+    const gridImages = document.querySelectorAll(
+      ".grid img, .grid-main img, .grid-project img"
+    );
     gridImages.forEach((image) => {
       const imageWidth = image.offsetWidth;
       const imageVW = (imageWidth / window.innerWidth) * 100;
@@ -284,4 +297,20 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("resize", () => {
     fixGridImagesResponsiveness();
   });
+});
+
+// ** LOCALIZATION ** //
+
+const savedLang = localStorage.getItem("selectedLang") || "fr";
+switchNavigationLanguageSelected(savedLang);
+updateLanguageTexts(globalElementsToTranslate, savedLang);
+
+document.getElementById("switch-fr").addEventListener("click", function () {
+  switchNavigationLanguageSelected("fr");
+  updateLanguageTexts(globalElementsToTranslate, "fr");
+});
+
+document.getElementById("switch-en").addEventListener("click", function () {
+  switchNavigationLanguageSelected("en");
+  updateLanguageTexts(globalElementsToTranslate, "en");
 });

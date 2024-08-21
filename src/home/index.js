@@ -1,5 +1,7 @@
+import { homeElementsToTranslate } from "../localization.js";
+import { updateLanguageTexts } from "../utils.js";
+
 gsap.registerPlugin(ScrollTrigger);
-// todo use somewhere to test ScrollTrigger.refresh();
 
 document.addEventListener("DOMContentLoaded", function () {
   //* LOADING SCREEN ANIMATION
@@ -24,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
       "<"
     )
     .fromTo(
-      ".nasa-apollo-mobile-screenshots",
+      ".nasa-mobile-screenshot",
       { opacity: 0, y: 50 },
       { opacity: 1, y: 0, stagger: 0.1 },
       "<"
@@ -93,4 +95,19 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     },
   });
+
+  // **   START LOCALIZATION  ** //
+
+  document.getElementById("switch-fr").addEventListener("click", function () {
+    updateLanguageTexts(homeElementsToTranslate, "fr");
+  });
+
+  document.getElementById("switch-en").addEventListener("click", function () {
+    updateLanguageTexts(homeElementsToTranslate, "en");
+  });
+
+  const savedLang = localStorage.getItem("selectedLang") || "fr";
+  updateLanguageTexts(homeElementsToTranslate, savedLang);
+
+  // **   END LOCALIZATION  ** //
 });
