@@ -2,8 +2,6 @@ import { lenis } from "../index.js";
 import { studioElementsToTranslate } from "../localization.js";
 import { updateLanguageTexts } from "../utils.js";
 
-gsap.registerPlugin(ScrollTrigger);
-
 function getCurrentClockByTimeZone(timeZone) {
   const options = { hour: "2-digit", minute: "2-digit", hour12: true };
   return new Date()

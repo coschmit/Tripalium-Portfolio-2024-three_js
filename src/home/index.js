@@ -1,8 +1,6 @@
 import { homeElementsToTranslate } from "../localization.js";
 import { updateLanguageTexts } from "../utils.js";
 
-gsap.registerPlugin(ScrollTrigger);
-
 document.addEventListener("DOMContentLoaded", function () {
   //* LOADING SCREEN ANIMATION
   let tl = gsap.timeline();
@@ -49,6 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
     trigger: ".company-description-section",
     start: "top 30%",
     end: "bottom 50%",
+    markers: true,
     onToggle: (self) => {
       if (
         (self.isActive === true && self.direction === 1) ||

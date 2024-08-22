@@ -16,7 +16,9 @@ const getNavbarLetterHTML = (text) => {
 };
 
 window.addEventListener("load", (event) => {
-  ScrollTrigger.refresh();
+  setTimeout(() => {
+    ScrollTrigger.refresh();
+  }, 1_000);
 });
 
 // ANIMATION LOADING
@@ -305,12 +307,18 @@ const savedLang = localStorage.getItem("selectedLang") || "fr";
 switchNavigationLanguageSelected(savedLang);
 updateLanguageTexts(globalElementsToTranslate, savedLang);
 
-document.getElementById("switch-fr").addEventListener("click", function () {
-  switchNavigationLanguageSelected("fr");
-  updateLanguageTexts(globalElementsToTranslate, "fr");
-});
+const switchFR = document.getElementById("switch-fr");
+if (switchFR) {
+  switchFR.addEventListener("click", function () {
+    switchNavigationLanguageSelected("fr");
+    updateLanguageTexts(globalElementsToTranslate, "fr");
+  });
+}
 
-document.getElementById("switch-en").addEventListener("click", function () {
-  switchNavigationLanguageSelected("en");
-  updateLanguageTexts(globalElementsToTranslate, "en");
-});
+const switchEN = document.getElementById("switch-en");
+if (switchEN) {
+  switchEN.addEventListener("click", function () {
+    switchNavigationLanguageSelected("en");
+    updateLanguageTexts(globalElementsToTranslate, "en");
+  });
+}
