@@ -42,17 +42,21 @@ document.addEventListener("DOMContentLoaded", function () {
     ".company-description-section"
   );
   const valorsContainer = document.querySelector(".valors-container");
+  const splineSceneMonogram = document.querySelector(".spline-scene-monogram");
 
   ScrollTrigger.create({
     trigger: ".company-description-section",
     start: "top 30%",
     end: "bottom 50%",
+
     onToggle: (self) => {
-      if (
-        (self.isActive === true && self.direction === 1) ||
-        (self.isActive === true && self.direction === -1)
-      ) {
+      if (self.isActive) {
         //active
+
+        // monogram invert
+        splineSceneMonogram.classList.add("white");
+
+        // background color
         gsap.to("body", {
           backgroundColor: "#e51111",
           duration: 0.5,
@@ -62,11 +66,13 @@ document.addEventListener("DOMContentLoaded", function () {
         contactSection.classList.add("variant");
         companyDescriptionSection.classList.add("variant");
         valorsContainer.classList.add("variant");
-      } else if (
-        (self.isActive === false && self.direction === -1) ||
-        (self.isActive === false && self.direction === 1)
-      ) {
+      } else if (self.isActive === false) {
         // desactive
+
+        // monogram invert
+        splineSceneMonogram.classList.remove("white");
+
+        // background color
         gsap.to("body", {
           backgroundColor: "rgba(0,0,0,0)",
           duration: 0.5,
@@ -75,21 +81,6 @@ document.addEventListener("DOMContentLoaded", function () {
         contactSection.classList.remove("variant");
         companyDescriptionSection.classList.remove("variant");
         valorsContainer.classList.remove("variant");
-      }
-    },
-  });
-
-  const splineSceneMonogram = document.querySelector(".spline-scene-monogram");
-
-  ScrollTrigger.create({
-    trigger: ".company-description-section",
-    start: "top 30%",
-    end: "bottom 50%",
-    onToggle: (self) => {
-      if (self.isActive) {
-        splineSceneMonogram.classList.add("white");
-      } else {
-        splineSceneMonogram.classList.remove("white");
       }
     },
   });

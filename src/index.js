@@ -6,20 +6,38 @@ import {
 
 gsap.registerPlugin(ScrollTrigger);
 
-export let lenis;
 const TRIPALIUM_EMAIL = "colin@tripalium-studio.com";
+
+// LENIS SMOOTH SCROLL
+
+const lenis = new Lenis({
+  lerp: 0.1,
+  wheelMultiplier: 0.7,
+  gestureOrientation: "vertical",
+  normalizeWheel: false,
+  smoothTouch: false,
+});
+
+lenis.on("scroll", ScrollTrigger.update);
+
+gsap.ticker.add((time) => {
+  lenis.raf(time * 1000);
+});
+
+gsap.ticker.lagSmoothing(0);
+
+// prevent from scrolltrigger wrong position due to  lazy loading
+document.querySelectorAll("img").forEach((img) => {
+  img.addEventListener("load", () => {
+    ScrollTrigger.refresh();
+  });
+});
 
 const getNavbarLetterHTML = (text) => {
   return [...text]
     .map((letter) => `<span class="trplm-link-letter">${letter}</span>`)
     .join("\n");
 };
-
-window.addEventListener("load", (event) => {
-  setTimeout(() => {
-    ScrollTrigger.refresh();
-  }, 1_000);
-});
 
 // ANIMATION LOADING
 document.addEventListener("DOMContentLoaded", function () {
@@ -51,25 +69,6 @@ document.addEventListener("DOMContentLoaded", function () {
   // ******************************************* //
   // ******************************************* //
 
-  // LENIS SMOOTH SCROLL
-
-  if (Webflow.env("editor") === undefined) {
-    lenis = new Lenis({
-      lerp: 0.1,
-      wheelMultiplier: 0.7,
-      gestureOrientation: "vertical",
-      normalizeWheel: false,
-      smoothTouch: false,
-    });
-
-    lenis.on("scroll", ScrollTrigger.update);
-
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
-    });
-
-    gsap.ticker.lagSmoothing(0);
-  }
   function updateClocks() {
     const clocksElement = document.getElementsByClassName("footer-clock-time");
     const options = { hour: "2-digit", minute: "2-digit", hour12: true };
