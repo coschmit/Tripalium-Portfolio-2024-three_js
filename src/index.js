@@ -2,7 +2,7 @@ import { globalElementsToTranslate } from "./localization.js";
 import {
   definePopupAnimationTL,
   emailPopupReveal,
-  remToPx,
+  getCopyEmailPopupDefaultWidth,
   switchNavigationLanguageSelected,
   updateLanguageTexts,
 } from "./utils.js";
@@ -266,7 +266,10 @@ document.addEventListener("DOMContentLoaded", function () {
           gsap.set([".copy-email-popup.clicked,.copy-email-popup.clicked-2"], {
             top: "100%",
           });
-          gsap.set(".copy-email-popups-wrapper", { width: "100%" });
+          const wrapperDefaultWidth = getCopyEmailPopupDefaultWidth();
+          gsap.set(".copy-email-popups-wrapper", {
+            width: wrapperDefaultWidth,
+          });
           gsap.set(".copy-email-popup-reveal", { width: "0%" });
         },
       };

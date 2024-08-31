@@ -34,19 +34,24 @@ export const remToPx = (rem) => {
   return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
 };
 
-export const emailPopupReveal = () => {
-  // text + padding + borders
-  const defaultDivWidth =
+export const getCopyEmailPopupDefaultWidth = () => {
+  // text + padding
+  return (
     document.querySelector(
       ".contact-section .copy-email-popup.default-length > div"
     ).offsetWidth +
-    remToPx(0.75) * 2 +
-    1 * 2; // change the reference if there is a longer text in the clicked anim
+    remToPx(0.75) * 2 // change the reference if there is a longer text in the clicked anim
+  );
+};
+
+export const emailPopupReveal = () => {
+  const defaultDivWidth = getCopyEmailPopupDefaultWidth() + 1 * 2; // + borders
 
   const emailRevealParams = {
     width: `${defaultDivWidth}px`,
     duration: 0.4,
   };
+  // gsap.to(".copy-email-popups-wrapper", { width: defaultDivWidth });
   gsap.to(".copy-email-popup-reveal", emailRevealParams);
 };
 
@@ -56,11 +61,15 @@ export const definePopupAnimationTL = (tl) => {
       .offsetWidth +
     remToPx(0.75) * 2;
 
-  tl.set(".copy-email-popups-wrapper", { width: largestDivWidth })
-    .to(".copy-email-popup-reveal", {
-      width: `${largestDivWidth}px`,
-      duration: 0.4,
-    })
+  tl.to(".copy-email-popups-wrapper", { width: largestDivWidth })
+    .to(
+      ".copy-email-popup-reveal",
+      {
+        width: `${largestDivWidth}px`,
+        duration: 0.4,
+      },
+      "<"
+    )
     .to(".copy-email-popup.clicked", {
       top: "0%",
       duration: 0.5,
