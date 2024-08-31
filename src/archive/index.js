@@ -16,9 +16,20 @@ const shuffleElements = (container, times = 1) => {
   }
 };
 
+const fixVideosRatio = () => {
+  const videos = document.querySelectorAll(".archive-items-grid video");
+
+  videos.forEach((video) => {
+    const width = video.videoWidth;
+    const height = video.videoHeight;
+    video.parentElement.style.aspectRatio = `${width} / ${height}`;
+  });
+};
+
 window.addEventListener("load", function () {
   let imageGrid = document.querySelector(".archive-items-grid");
   shuffleElements(imageGrid);
+  fixVideosRatio();
   imageGrid.classList.remove("hidden");
 });
 

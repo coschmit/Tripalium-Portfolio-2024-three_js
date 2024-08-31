@@ -1,5 +1,8 @@
 import { globalElementsToTranslate } from "./localization.js";
 import {
+  definePopupAnimationTL,
+  emailPopupReveal,
+  remToPx,
   switchNavigationLanguageSelected,
   updateLanguageTexts,
 } from "./utils.js";
@@ -46,6 +49,69 @@ document.addEventListener("DOMContentLoaded", function () {
   const contactSection = document.querySelector(".contact-section");
   const footer = document.querySelector(".footer");
   // ******************************************* //
+
+  //* LOADING SCREEN ANIMATION
+  if (document.querySelector(".page-transition") !== null) {
+    let tl = gsap.timeline();
+
+    // gsap.set(".home-loading-icon-wrapper", { rotate: 0, opacity: 1 });
+    tl.to(".page-transition-icon-wrapper", { opacity: 1, duration: 0.4 })
+      .to(".page-transition-icon-wrapper", { rotate: 0, duration: 0.5 }, "<")
+      .to(".page-transition", {
+        height: 0,
+        duration: 0.8,
+        delay: 0.4,
+        ease: "power2.out",
+      })
+      .to(
+        ".page-transition-icon-wrapper",
+        {
+          y: -150,
+          opacity: 0,
+          onComplete: () => {
+            // gsap.set(".home-loading-icon-wrapper", { display: "none" });
+          },
+        },
+        "<"
+      )
+      .fromTo(
+        ".navigation",
+        { opacity: 0 },
+        { opacity: 1, duration: 1, ease: "linear" },
+        "<0.5"
+      );
+
+    const excludedClass = "no-transition";
+    const exitDurationMS = 800;
+    document.querySelectorAll("a").forEach((anchor) => {
+      anchor.addEventListener("click", function (e) {
+        const hostname = this.hostname;
+        const href = this.getAttribute("href");
+        const target = this.getAttribute("target");
+
+        if (
+          hostname === window.location.hostname &&
+          href.indexOf("#") === -1 &&
+          !this.classList.contains(excludedClass) &&
+          target !== "_blank"
+        ) {
+          e.preventDefault();
+          gsap.to(".page-transition", {
+            height: "100%",
+            duration: 0.5,
+            ease: "power2.inOut",
+          });
+          const transitionURL = href;
+
+          setTimeout(() => {
+            window.location.href = transitionURL;
+          }, exitDurationMS);
+        }
+      });
+    });
+  }
+
+  // ** END LOADING SCREEN ANIMATION ** //
 
   // ** TRPLM LINK NAVBAR ** //
   if (navigationBar) {
@@ -187,42 +253,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const arrowEnterParams = { x: 10, y: -10, duration: 0.2 };
       const arrowLeaveParams = { x: 0, y: 0, duration: 0.2 };
-      const emailRevealParams = {
-        width: "100%",
-        duration: 0.4,
-        onStart: () => {
-          // gsap.set(".copy-email-popup-reveal", { display: "block" });
-        },
-      };
+
       const emailHideParams = {
         width: "0%",
         duration: 0.4,
         onComplete: () => {
           tl.pause();
-          tl.seek(0);
+          tl.clear();
+
           copyEmailIsClicked = false;
-          // gsap.set(".copy-email-popup-reveal", { display: "none" });
+          // reset position
+          gsap.set([".copy-email-popup.clicked,.copy-email-popup.clicked-2"], {
+            top: "100%",
+          });
+          gsap.set(".copy-email-popups-wrapper", { width: "100%" });
+          gsap.set(".copy-email-popup-reveal", { width: "0%" });
         },
       };
 
-      tl.to(".copy-email-popup.clicked", {
-        top: "0%",
-        duration: 0.5,
-      })
-        .to(".copy-email-popup.clicked", { top: "0%", duration: 1 })
-        .to(
-          ".copy-email-popup.clicked",
-          {
-            top: "-100%",
-            duration: 0.5,
-          },
-          "<1.5"
-        )
-        .to(".copy-email-popup.clicked-2", { top: "0%", duration: 0.5 }, "<");
-
       contactSectionArrow.addEventListener("mouseenter", () => {
         gsap.to(contactSectionArrow, arrowEnterParams);
-        gsap.to(".copy-email-popup-reveal", emailRevealParams);
+        if (copyEmailIsClicked === false) {
+          emailPopupReveal();
+        }
       });
 
       contactSectionArrow.addEventListener("mouseleave", () => {
@@ -236,7 +289,10 @@ document.addEventListener("DOMContentLoaded", function () {
         navigator.clipboard.writeText(TRIPALIUM_EMAIL);
 
         if (copyEmailIsClicked === false) {
-          tl.play();
+          definePopupAnimationTL(tl);
+          setTimeout(() => {
+            tl.play();
+          }, 100);
 
           copyEmailIsClicked = true;
 
@@ -277,7 +333,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (monogramWrapper) {
     monogramWrapper.addEventListener("click", () => {
-      window.location.replace("/");
+      gsap.to(".page-transition", {
+        height: "100%",
+        duration: 0.5,
+        ease: "power2.inOut",
+      });
+
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 800);
     });
   }
 
