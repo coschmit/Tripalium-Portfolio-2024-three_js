@@ -13,7 +13,7 @@ const TRIPALIUM_EMAIL = "colin@tripalium-studio.com";
 
 // LENIS SMOOTH SCROLL
 
-const lenis = new Lenis({
+export const lenis = new Lenis({
   lerp: 0.1,
   wheelMultiplier: 0.7,
   gestureOrientation: "vertical",
