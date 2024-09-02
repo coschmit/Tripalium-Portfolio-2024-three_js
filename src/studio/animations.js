@@ -176,31 +176,27 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   const navigationBar = document.querySelector(".navigation");
-  gsap.to(navigationBar, {
-    onComplete: () => {
-      gsap.set(".navigation", { zIndex: -1 });
-    },
-    scrollTrigger: {
-      trigger: "#earth-canvas-section",
-      start: "top center",
-      end: "bottom center",
-      toggleActions: "play reverse play reverse",
-      onEnter: () => gsap.set(".navigation .link", { pointerEvents: "none" }),
-      onEnterBack: () =>
-        gsap.set(".navigation .link", { pointerEvents: "none" }),
-      onLeave: () => {
-        gsap.set(".navigation", { zIndex: 1 });
-        gsap.set(".navigation .link", { pointerEvents: "auto" });
-      },
-      onLeaveBack: () => {
-        gsap.set(".navigation", { zIndex: 1 });
-        gsap.set(".navigation .link", { pointerEvents: "auto" });
-      },
-    },
 
-    duration: 0.2,
-    ease: "power2.inOut",
-    opacity: 0,
+  ScrollTrigger.create({
+    trigger: "#earth-canvas-section",
+    start: "top center",
+    end: "bottom center",
+    onToggle: (self) => {
+      if (self.isActive === true) {
+        gsap.set(".navigation .link", { pointerEvents: "none" });
+        gsap.to(navigationBar, {
+          opacity: 0,
+          duration: 0.2,
+          ease: "power2.inOut",
+        });
+      } else if (self.isActive === false) {
+        gsap.set(".navigation .link", { pointerEvents: "auto" });
+        gsap.to(navigationBar, {
+          opacity: 1,
+          duration: 0.4,
+        });
+      }
+    },
   });
 
   var splide1 = new Splide("#studio-profile-splide-paul", {
