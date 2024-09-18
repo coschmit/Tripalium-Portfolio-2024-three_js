@@ -1,5 +1,5 @@
+import { homeTranslationsRefs } from "../../localization/pages/home.js";
 import { REVEAL_ANIMATION_DURATION } from "../config.js";
-import { homeElementsToTranslate } from "../localization.js";
 import { updateLanguageTexts } from "../utils.js";
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -70,15 +70,15 @@ document.addEventListener("DOMContentLoaded", function () {
   // **   START LOCALIZATION  ** //
 
   document.getElementById("switch-fr").addEventListener("click", function () {
-    updateLanguageTexts(homeElementsToTranslate, "fr");
+    updateLanguageTexts(homeTranslationsRefs, "fr");
   });
 
   document.getElementById("switch-en").addEventListener("click", function () {
-    updateLanguageTexts(homeElementsToTranslate, "en");
+    updateLanguageTexts(homeTranslationsRefs, "en");
   });
 
   const savedLang = localStorage.getItem("selectedLang") || "fr";
-  updateLanguageTexts(homeElementsToTranslate, savedLang);
+  updateLanguageTexts(homeTranslationsRefs, savedLang);
 
   // **   END LOCALIZATION  ** //
 });

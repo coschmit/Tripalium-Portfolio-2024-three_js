@@ -1,5 +1,5 @@
+import { studioTranslationsRefs } from "../../localization/pages/studio.js";
 import { lenis } from "../index.js";
-import { studioElementsToTranslate } from "../localization.js";
 import { updateLanguageTexts } from "../utils.js";
 
 function getCurrentClockByTimeZone(timeZone) {
@@ -299,14 +299,14 @@ document.addEventListener("DOMContentLoaded", function () {
 // **   START LOCALIZATION  ** //
 
 document.getElementById("switch-fr").addEventListener("click", function () {
-  updateLanguageTexts(studioElementsToTranslate, "fr");
+  updateLanguageTexts(studioTranslationsRefs, "fr");
 });
 
 document.getElementById("switch-en").addEventListener("click", function () {
-  updateLanguageTexts(studioElementsToTranslate, "en");
+  updateLanguageTexts(studioTranslationsRefs, "en");
 });
 
 const savedLang = localStorage.getItem("selectedLang") || "fr";
-updateLanguageTexts(studioElementsToTranslate, savedLang);
+updateLanguageTexts(studioTranslationsRefs, savedLang);
 
 // **   END LOCALIZATION  ** //

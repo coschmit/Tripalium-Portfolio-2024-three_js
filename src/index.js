@@ -1,4 +1,4 @@
-import { globalElementsToTranslate } from "./localization.js";
+import { translationsRefs } from "../localization/index.js";
 import {
   definePopupAnimationTL,
   emailPopupReveal,
@@ -371,13 +371,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
 const savedLang = localStorage.getItem("selectedLang") || "fr";
 switchNavigationLanguageSelected(savedLang);
-updateLanguageTexts(globalElementsToTranslate, savedLang);
+updateLanguageTexts(translationsRefs, savedLang);
 
 const switchFR = document.getElementById("switch-fr");
 if (switchFR) {
   switchFR.addEventListener("click", function () {
     switchNavigationLanguageSelected("fr");
-    updateLanguageTexts(globalElementsToTranslate, "fr");
+    updateLanguageTexts(translationsRefs, "fr");
   });
 }
 
@@ -385,6 +385,6 @@ const switchEN = document.getElementById("switch-en");
 if (switchEN) {
   switchEN.addEventListener("click", function () {
     switchNavigationLanguageSelected("en");
-    updateLanguageTexts(globalElementsToTranslate, "en");
+    updateLanguageTexts(translationsRefs, "en");
   });
 }

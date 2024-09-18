@@ -1,4 +1,4 @@
-import { translations } from "./localization.js";
+import { translations } from "../localization/index.js";
 
 // ** LOCALIZATION ** //
 export const switchNavigationLanguageSelected = (lang) => {
