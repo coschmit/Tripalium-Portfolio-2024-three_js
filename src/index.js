@@ -9,7 +9,7 @@ import {
 
 gsap.registerPlugin(ScrollTrigger);
 
-const TRIPALIUM_EMAIL = "colin@tripalium-studio.com";
+const TRIPALIUM_EMAIL = "contact@tripalium-studio.com";
 
 // LENIS SMOOTH SCROLL
 
