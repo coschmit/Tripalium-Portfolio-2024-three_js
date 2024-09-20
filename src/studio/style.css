@@ -169,3 +169,35 @@ body {
     display: flex;
   }
 }
+
+/* Mobile - jusqu'à 478px */
+@media only screen and (max-width: 478px) {
+  .canvas-profile.paul-profile {
+    left: 10px;
+    top: 10px;
+  }
+  .canvas-profile.colin-profile {
+    right: 10px;
+    bottom: 10px;
+  }
+}
+
+/* Tablet - entre 479px et 991px */
+@media only screen and (min-width: 479px) and (max-width: 991px) {
+  .canvas-profile.paul-profile {
+    left: 20px;
+    top: 20px;
+  }
+  .canvas-profile.colin-profile {
+    right: 20px;
+    bottom: 20px;
+  }
+}
+
+/* Desktop - à partir de 992px */
+@media only screen and (min-width: 992px) {
+}
+
+/* Desktop Large - à partir de 1440px */
+@media only screen and (min-width: 1440px) {
+}
