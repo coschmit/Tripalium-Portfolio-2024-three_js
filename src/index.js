@@ -15,7 +15,7 @@ const TRIPALIUM_EMAIL = "contact@tripalium-studio.com";
 
 export const lenis = new Lenis({
   lerp: 0.1,
-  wheelMultiplier: 0.7,
+  wheelMultiplier: 1,
   gestureOrientation: "vertical",
   normalizeWheel: false,
   smoothTouch: false,

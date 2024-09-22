@@ -31,7 +31,7 @@ export const studioTranslations = {
 
     studioPaulDescription: `Hey ! Je suis designer et je vis dans les Pyrénées.
 
-Je suis en charge d'établir la vision créative du studio, en veillant à ce que chaque projet reflète une approche cohérente et innovante. Mon travail se distingue par une attention minutieuse aux détails visuels et fonctionnels.
+Je suis en charge d'établir la vision créative du studio, en veillant à ce que chaque projet reflète une approche cohérente et innovante. Mon travail se caractérise par une attention minutieuse aux détails visuels et fonctionnels.
 
 Avant de co-fonder TRIPALIUM avec Colin, j'ai travaillé chez AREA 17, où j'ai acquis une solide expérience en travaillant avec des design systèmes complexes et en abordant des problématiques business exigeantes. J'ai eu l'occasion de collaborer avec des marques renommées telles que Balenciaga, Saint Laurent, Van Cleef & Arpels, et des institutions culturelles comme Fine Art Museum of San Francisco et Maison Gainsbourg.
 
@@ -50,13 +50,13 @@ Quand je ne code pas, j'aime voyager, capturer des moments à travers la photogr
       "Strategic guidance, creative workshops, ideation sprints, and showcase website — perfect for tackling short-term projects and specific needs.",
     studioLargerProjects:
       "We also handle larger projects such as branding, e-commerce platforms, CMS integration, and deliver continuous care to website evolutions and project growth.",
-    studioPaulDescription: `Hey! I'm a designer living in the Pyrenees.
+    studioPaulDescription: `Hey! I’m a designer living in the French Pyrenees.
 
-I’m responsible for establishing the studio’s creative vision, ensuring that every project reflects a cohesive and innovative approach. My work stands out for its meticulous attention to visual and functional details.
+I define the creative vision of the studio, ensuring that every project reflects a consistent and innovative approach. My work focuses on careful attention to both visual and functional details.
 
-Before co-founding TRIPALIUM with Colin, I worked at AREA 17, where I gained solid experience working with complex design systems and addressing demanding business challenges. I had the opportunity to collaborate with renowned brands such as Balenciaga, Saint Laurent, Van Cleef & Arpels, and cultural institutions like the Fine Arts Museums of San Francisco and the Maison Gainsbourg.
+Before co-founding TRIPALIUM with Colin, I worked at AREA 17, where I gained solid experience working with complex design systems and tackling demanding business challenges. I’ve had the chance to collaborate with renowned brands like Balenciaga, Saint Laurent, Van Cleef & Arpels, and cultural institutions such as the Fine Arts Museums of San Francisco and Maison Gainsbourg.
 
-In my free time, I’m renovating my house in the mountains and enjoy taking care of my garden. I also love hiking, riding my motorcycle, and exploring everything related to the creative field."
+In my free time, I’m renovating my house in the mountains and love taking care of my garden. I also enjoy hiking, riding my motorcycle, and exploring anything related to the creative field.
 `,
     studioColinDescription: `Hey! I'm a fullstack developer, currently based in Peru.
 
