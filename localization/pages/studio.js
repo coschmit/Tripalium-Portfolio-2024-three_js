@@ -20,6 +20,26 @@ export const studioTranslationsRefs = [
     ),
     key: "studioColinDescription",
   },
+
+  // circles
+  {
+    element: document.querySelector(
+      ".studio-circles-container > .studio-circles-circle-wrapper:nth-child(1) > div"
+    ),
+    key: "studioCircle1",
+  },
+  {
+    element: document.querySelector(
+      ".studio-circles-container > .studio-circles-circle-wrapper:nth-child(2) > div"
+    ),
+    key: "studioCircle2",
+  },
+  {
+    element: document.querySelector(
+      ".studio-circles-container > .studio-circles-circle-wrapper:nth-child(3) > div"
+    ),
+    key: "studioCircle3",
+  },
 ];
 
 export const studioTranslations = {
@@ -44,6 +64,9 @@ Avant de co-fonder TRIPALIUM avec Paul, j'ai travaillé chez Gameloft au Canada,
 
 Quand je ne code pas, j'aime voyager, capturer des moments à travers la photographie, jouer du piano, et explorer de nouveaux univers qui me fascinent. Toujours prêt pour de nouveaux défis, surtout ceux qui mêlent créativité et technologie !
 `,
+    studioCircle1: "Approche\nholistique",
+    studioCircle2: "Exécution\nprécise",
+    studioCircle3: "Collaboration\nsur-mesure",
   },
   en: {
     studioStrategicGuidance:
@@ -65,5 +88,8 @@ At TRIPALIUM, I handle all things technical, making sure every project is effici
 Before co-founding TRIPALIUM with Paul, I worked at Gameloft in Canada, where I had the opportunity to collaborate with prestigious clients like Sony Music and Warner. These experiences helped me navigate complex and varied technical environments and tackle demanding challenges.
 
 When I’m not coding, I love to travel, capture moments through photography, play the piano, and explore new worlds that fascinate me. Always ready for new challenges, especially those that combine creativity and technology!`,
+    studioCircle1: "Holistic\napproach",
+    studioCircle2: "Thoughful\nCraft",
+    studioCircle3: "Bespoke\ncollaboration",
   },
 };
