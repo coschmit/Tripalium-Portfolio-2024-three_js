@@ -1,5 +1,6 @@
 import { globalTranslations, globalTranslationsRefs } from "./global.js";
 import { homeTranslations } from "./pages/home.js";
+import { nasaCaseTranslations } from "./pages/nasa-case.js";
 import { studioTranslations } from "./pages/studio.js";
 import {
   valorsContainerTranslations,
@@ -23,6 +24,8 @@ export const translations = {
     ...homeTranslations.fr,
     // studio
     ...studioTranslations.fr,
+    // nasa case
+    ...nasaCaseTranslations.fr,
   },
   en: {
     // global
@@ -33,5 +36,7 @@ export const translations = {
     ...homeTranslations.en,
     // studio
     ...studioTranslations.en,
+    // nasa case
+    ...nasaCaseTranslations.en,
   },
 };
