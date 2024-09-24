@@ -21,6 +21,18 @@ new Splide("#nasa-case-splide", {
   },
 }).mount();
 
+// ** FIX VIDEOS RATIO ** //
+const fixVideosRatio = () => {
+  const videos = document.querySelectorAll(".cs-background-video video");
+
+  videos.forEach((video) => {
+    const width = video.videoWidth;
+    const height = video.videoHeight;
+    video.parentElement.style.aspectRatio = `${width} / ${height}`;
+  });
+};
+fixVideosRatio();
+
 // **   START LOCALIZATION  ** //
 document.getElementById("switch-fr").addEventListener("click", function () {
   updateLanguageTexts(nasaCaseTranslationsRefs, "fr");
