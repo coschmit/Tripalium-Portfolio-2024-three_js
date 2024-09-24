@@ -106,13 +106,10 @@ body {
 .canvas-profile .row .arrow-wrapper {
   padding-left: 6px;
   color: var(--primitive-lava--lava-600, #e51111);
-  /* font-size already defined by webflow ui style */
-  /*
   font-family: var(--token-display--font-family);
   font-weight: 400;
   line-height: 130%;
   letter-spacing: var(--primitive-letter-spacing--1);
-  */
 }
 
 /* STUDIO PROFILE OVERLAY */
