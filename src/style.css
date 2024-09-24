@@ -245,6 +245,16 @@ html.lenis body {
   }
 }
 
+/* BACKGROUND VIDEO */
+
+/* .archive-items-grid .w-background-video {
+  height: auto;
+} */
+
+.w-background-video {
+  height: auto;
+}
+
 .w-background-video--control {
   left: 1rem;
   bottom: 1rem;
