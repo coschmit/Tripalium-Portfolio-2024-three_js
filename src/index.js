@@ -11,9 +11,13 @@ gsap.registerPlugin(ScrollTrigger);
 
 const TRIPALIUM_EMAIL = "contact@tripalium-studio.com";
 
+// is Mobile Landscape
+const isMobile = window.innerWidth <= 768;
+
 // LENIS SMOOTH SCROLL
 
 export const lenis = new Lenis({
+  smoothWheel: !isMobile,
   lerp: 0.1,
   wheelMultiplier: 1,
   gestureOrientation: "vertical",
@@ -53,24 +57,28 @@ document.addEventListener("DOMContentLoaded", function () {
   //* LOADING SCREEN ANIMATION
   if (document.querySelector(".page-transition") !== null) {
     let tl = gsap.timeline();
-
+    if (lenis) {
+      lenis.stop();
+    }
     // gsap.set(".home-loading-icon-wrapper", { rotate: 0, opacity: 1 });
     tl.to(".page-transition-icon-wrapper", { opacity: 1, duration: 0.4 })
       .to(".page-transition-icon-wrapper", { rotate: 0, duration: 0.5 }, "<")
       .to(".page-transition", {
         height: 0,
-        duration: 0.8,
+        duration: 10.8,
         delay: 0.4,
         ease: "power2.out",
+        onComplete: () => {
+          if (lenis) {
+            lenis.start();
+          }
+        },
       })
       .to(
         ".page-transition-icon-wrapper",
         {
           y: -150,
           opacity: 0,
-          onComplete: () => {
-            // gsap.set(".home-loading-icon-wrapper", { display: "none" });
-          },
         },
         "<"
       )

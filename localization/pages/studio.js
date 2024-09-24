@@ -40,6 +40,57 @@ export const studioTranslationsRefs = [
     ),
     key: "studioCircle3",
   },
+
+  // SPRINTS
+  {
+    element: document.querySelector(
+      ".studio-agenda-container .agenda-item-wrapper:nth-child(1) .agenda-item .agenda-details-wrapper .tag"
+    ),
+    key: "studioSprint1Tag",
+  },
+  {
+    element: document.querySelector(
+      ".studio-agenda-container .agenda-item-wrapper:nth-child(2) .agenda-item .agenda-details-wrapper .tag"
+    ),
+    key: "studioSprint2Tag",
+  },
+  {
+    element: document.querySelector(
+      ".studio-agenda-container .agenda-item-wrapper:nth-child(3) .agenda-item .agenda-details-wrapper .tag"
+    ),
+    key: "studioSprint3Tag",
+  },
+  {
+    element: document.querySelector(
+      ".studio-agenda-container .agenda-item-wrapper:nth-child(4) .agenda-item .agenda-details-wrapper .tag"
+    ),
+    key: "studioSprint4Tag",
+  },
+
+  {
+    element: document.querySelector(
+      ".studio-agenda-container .agenda-item-wrapper:nth-child(1) .agenda-item .agenda-details-wrapper .agenda-details-countdown"
+    ),
+    key: "studioSprint1Duration",
+  },
+  {
+    element: document.querySelector(
+      ".studio-agenda-container .agenda-item-wrapper:nth-child(2) .agenda-item .agenda-details-wrapper .agenda-details-countdown"
+    ),
+    key: "studioSprint2Duration",
+  },
+  {
+    element: document.querySelector(
+      ".studio-agenda-container .agenda-item-wrapper:nth-child(3) .agenda-item .agenda-details-wrapper .agenda-details-countdown"
+    ),
+    key: "studioSprint3Duration",
+  },
+  {
+    element: document.querySelector(
+      ".studio-agenda-container .agenda-item-wrapper:nth-child(4) .agenda-item .agenda-details-wrapper .agenda-details-countdown"
+    ),
+    key: "studioSprint4Duration",
+  },
 ];
 
 export const studioTranslations = {
@@ -58,7 +109,7 @@ Avant de co-fonder TRIPALIUM avec Colin, j'ai travaillé chez AREA 17, où j'ai 
 Sur mon temps libre, je rénove ma maison au milieu des montagnes et j’aime m’occuper de mon jardin. J’aime également faire des randonnées, de la moto et explorer tout ce qui touche au domaine de la création.`,
     studioColinDescription: `Hey ! Je suis développeur fullstack, actuellement basé au Pérou.
 
-Chez TRIPALIUM, je m’occupe de tout ce qui est technique, en m’assurant que chaque projet soit performant, fiable et surtout innovant. Je cherche toujours à améliorer l’efficacité de ce qu’on crée, tout en restant créatif.
+Chez TRIPALIUM, je m’occupe de tout ce qui est technique, en m’assurant que chaque projet soit performant, viable et surtout innovant. Je cherche toujours à améliorer l’efficacité de ce qu’on crée, tout en restant créatif.
 
 Avant de co-fonder TRIPALIUM avec Paul, j'ai travaillé chez Gameloft au Canada, où j'ai eu l'opportunité de collaborer avec des clients prestigieux comme Sony Music et Warner etc.. Ces expériences m'ont permis de naviguer dans des environnements techniques complexes et variés et de relever des défis exigeants.
 
@@ -67,6 +118,17 @@ Quand je ne code pas, j'aime voyager, capturer des moments à travers la photogr
     studioCircle1: "Approche\nholistique",
     studioCircle2: "Exécution\nprécise",
     studioCircle3: "Collaboration\nsur-mesure",
+
+    // SPRINTS
+    studioSprint1Tag: "Recherches & idéation",
+    studioSprint2Tag: "Fondations & itérations",
+    studioSprint3Tag: "développement",
+    studioSprint4Tag: "Mise en ligne",
+
+    studioSprint1Duration: "2 sem",
+    studioSprint2Duration: "6 sem",
+    studioSprint3Duration: "8 sem",
+    studioSprint4Duration: "1 sem",
   },
   en: {
     studioStrategicGuidance:
@@ -83,7 +145,7 @@ In my free time, I’m renovating my house in the mountains and love taking care
 `,
     studioColinDescription: `Hey! I'm a fullstack developer, currently based in Peru.
 
-At TRIPALIUM, I handle all things technical, making sure every project is efficient, reliable, and above all, innovative. I'm always looking for ways to improve what we create while staying creative.
+At TRIPALIUM, I handle all things technical, making sure every project is efficient, viable, and above all, innovative. I'm always looking for ways to improve what we create while staying creative.
 
 Before co-founding TRIPALIUM with Paul, I worked at Gameloft in Canada, where I had the opportunity to collaborate with prestigious clients like Sony Music and Warner. These experiences helped me navigate complex and varied technical environments and tackle demanding challenges.
 
@@ -91,5 +153,16 @@ When I’m not coding, I love to travel, capture moments through photography, pl
     studioCircle1: "Holistic\napproach",
     studioCircle2: "Thoughful\nCraft",
     studioCircle3: "Bespoke\ncollaboration",
+
+    // SPRINT
+    studioSprint1Tag: "research & ideation",
+    studioSprint2Tag: "Foundations & itérations",
+    studioSprint3Tag: "Development",
+    studioSprint4Tag: "Deployment",
+
+    studioSprint1Duration: "2 weeks",
+    studioSprint2Duration: "6 weeks",
+    studioSprint3Duration: "8 weeks",
+    studioSprint4Duration: "1 week",
   },
 };
