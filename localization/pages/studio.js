@@ -91,16 +91,6 @@ export const studioTranslationsRefs = [
     ),
     key: "studioSprint4Duration",
   },
-
-  // visit website
-  {
-    element: document.querySelector(".cs-header-visit-site-wrapper a"),
-    key: "visitWebsite",
-  },
-  {
-    element: document.querySelector(".project-detail-visit-website-section a"),
-    key: "visitWebsite",
-  },
 ];
 
 export const studioTranslations = {
@@ -139,7 +129,6 @@ Quand je ne code pas, j'aime voyager, capturer des moments à travers la photogr
     studioSprint2Duration: "6 sem",
     studioSprint3Duration: "8 sem",
     studioSprint4Duration: "1 sem",
-    visitWebsite: "visiter le site",
   },
   en: {
     studioStrategicGuidance:
@@ -175,6 +164,5 @@ When I’m not coding, I love to travel, capture moments through photography, pl
     studioSprint2Duration: "6 weeks",
     studioSprint3Duration: "8 weeks",
     studioSprint4Duration: "1 week",
-    visitWebsite: "visit website",
   },
 };

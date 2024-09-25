@@ -23,6 +23,15 @@ export const nasaCaseTranslationsRefs = [
     element: document.querySelector("#cs-nasa-paragraph-3 p"),
     key: "nasaParagraphContent3",
   },
+  // visit website
+  {
+    element: document.querySelector(".cs-header-visit-site-wrapper a"),
+    key: "visitWebsite",
+  },
+  {
+    element: document.querySelector(".project-detail-visit-website-section a"),
+    key: "visitWebsite",
+  },
 ];
 
 export const nasaCaseTranslations = {
@@ -40,6 +49,7 @@ export const nasaCaseTranslations = {
 et des différentes interactions. L’objectif étant de préserver une expérience utilisateur fluide et immersive sur tous les appareils. 
 
 Pour gérer les images brutes et très lourdes des archives officielles de la NASA, nous avons appliqué des optimisation spécifiques, réduisant leur poids tout en préservant leur qualité. De plus, l’intégration du lazy loading permet un chargement progressif, assurant une expérience fluide et sans délais, même avec de nombreux assets en arrière-plan.`,
+    visitWebsite: "visiter le site",
   },
   en: {
     nasaParagraphTitle1: "Digitizing a physical product",
@@ -54,5 +64,6 @@ Pour gérer les images brutes et très lourdes des archives officielles de la NA
     nasaParagraphContent3: `The project’s complexity lies in optimizing various interactions and display performances in order to preserve a smooth and immersive user experience across all devices.
 
 To manage the large raw images from the official NASA archives, we applied specific optimizations, reducing their weight while preserving their quality. Additionally, the integration of a lazy loading ensures a fluid and friction-free experience, regardless of multiple assets in the background.`,
+    visitWebsite: "visit website",
   },
 };
