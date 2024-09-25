@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
       .to(".page-transition-icon-wrapper", { rotate: 0, duration: 0.5 }, "<")
       .to(".page-transition", {
         height: 0,
-        duration: 10.8,
+        duration: 0.8,
         delay: 0.4,
         ease: "power2.out",
         onComplete: () => {
