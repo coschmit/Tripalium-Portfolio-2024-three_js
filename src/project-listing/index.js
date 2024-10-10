@@ -3,5 +3,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const archiveImageGrid = document.querySelector(".project-list");
 
-  projectCounter.innerHTML = `${archiveImageGrid.childElementCount} PROJECTS`;
+  const lang = localStorage.getItem("selectedLang") || "fr";
+
+  if (lang === "en") {
+    projectCounter.innerHTML = `${archiveImageGrid.childElementCount} PROJECTS`;
+  } else {
+    projectCounter.innerHTML = `${archiveImageGrid.childElementCount} PROJETS`;
+  }
 });

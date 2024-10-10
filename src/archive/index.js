@@ -36,6 +36,14 @@ window.addEventListener("load", function () {
 document.addEventListener("DOMContentLoaded", function () {
   const projectCounter = document.querySelector(".projects-counter");
 
+  const lang = localStorage.getItem("selectedLang") || "fr";
+
+  if (lang === "en") {
+    projectCounter.innerHTML = `${archiveImageGrid.childElementCount} PROJECTS`;
+  } else {
+    projectCounter.innerHTML = `${archiveImageGrid.childElementCount} PROJETS`;
+  }
+
   const archiveImageGrid = document.querySelector(".archive-items-grid");
   projectCounter.innerHTML = `${archiveImageGrid.childElementCount} ITEMS`;
 });
