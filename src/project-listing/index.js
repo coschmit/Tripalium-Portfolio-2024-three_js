@@ -11,3 +11,18 @@ document.addEventListener("DOMContentLoaded", function () {
     projectCounter.innerHTML = `${archiveImageGrid.childElementCount} PROJETS`;
   }
 });
+
+// **   START LOCALIZATION  ** //
+
+document.getElementById("switch-fr").addEventListener("click", function () {
+  updateLanguageTexts(studioTranslationsRefs, "fr");
+});
+
+document.getElementById("switch-en").addEventListener("click", function () {
+  updateLanguageTexts(studioTranslationsRefs, "en");
+});
+
+const savedLang = localStorage.getItem("selectedLang") || "fr";
+updateLanguageTexts(studioTranslationsRefs, savedLang);
+
+// **   END LOCALIZATION  ** //
