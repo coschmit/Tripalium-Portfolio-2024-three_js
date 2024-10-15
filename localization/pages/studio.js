@@ -95,7 +95,6 @@ export const studioTranslationsRefs = [
 
 export const studioTranslations = {
   fr: {
-    studioTitle: "(projets)",
     studioStrategicGuidance:
       "Conseils stratégiques, ateliers créatifs, sprints d’idéation et site vitrine — idéal pour les projets à court terme et les besoins spécifiques.",
     studioLargerProjects:
@@ -132,7 +131,6 @@ Quand je ne code pas, j'aime voyager, capturer des moments à travers la photogr
     studioSprint4Duration: "1 sem",
   },
   en: {
-    studioTitle: "(works)",
     studioStrategicGuidance:
       "Strategic guidance, creative workshops, ideation sprints, and showcase website — perfect for tackling short-term projects and specific needs.",
     studioLargerProjects:

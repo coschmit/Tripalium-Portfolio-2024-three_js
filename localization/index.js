@@ -1,6 +1,7 @@
 import { globalTranslations, globalTranslationsRefs } from "./global.js";
 import { homeTranslations } from "./pages/home.js";
 import { nasaCaseTranslations } from "./pages/nasa-case.js";
+import { projectListingTranslations } from "./pages/project-listing.js";
 import { studioTranslations } from "./pages/studio.js";
 import {
   valorsContainerTranslations,
@@ -24,6 +25,8 @@ export const translations = {
     ...homeTranslations.fr,
     // studio
     ...studioTranslations.fr,
+    // project listing
+    ...projectListingTranslations.fr,
     // nasa case
     ...nasaCaseTranslations.fr,
   },
@@ -36,6 +39,8 @@ export const translations = {
     ...homeTranslations.en,
     // studio
     ...studioTranslations.en,
+    // project listing
+    ...projectListingTranslations.en,
     // nasa case
     ...nasaCaseTranslations.en,
   },
