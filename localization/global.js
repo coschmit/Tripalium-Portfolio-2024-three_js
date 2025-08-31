@@ -26,12 +26,14 @@ export const globalTranslationsRefs = [
 
   // * footer * //
   {
-    element: document.querySelector(".contact-section .contact-section-row h1"),
+    element: document.querySelector(
+      ".contact-section .contact-section-row > h4"
+    ),
     key: "globalContactStart",
   },
   {
     element: document.querySelector(
-      ".contact-section .contact-section-row:nth-child(2) h1"
+      ".contact-section .contact-section-row:nth-child(2) > h4"
     ),
     key: "globalContactProject",
   },

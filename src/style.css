@@ -135,7 +135,7 @@ html.lenis body {
   cursor: default;
 }
 
-.valors-container.variant .valor-row > h1 {
+.valors-container.variant .valor-row > h2 {
   color: white;
 }
 .valors-container.variant .valor-row .valors-tags-container > .tag {
