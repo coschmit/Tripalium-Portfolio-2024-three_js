@@ -128,7 +128,7 @@ html.lenis body {
   opacity: 1;
 }
 
-.valors-container .valor-row > h1 {
+.valors-container .valor-row > h2 {
   transition: color 0.5s ease;
 }
 .valors-container .valor-row .valors-tags-container > .tag {
@@ -159,7 +159,7 @@ html.lenis body {
   top: 0;
 }
 
-.valors-container .valor-row h1 {
+.valors-container .valor-row h2 {
   pointer-events: none;
 }
 
