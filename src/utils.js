@@ -20,12 +20,23 @@ export const switchNavigationLanguageSelected = (lang) => {
 // elementsToTranslate: {element: HTML, key:string}[]
 // lang: string (ex: 'fr' || 'en')
 export const updateLanguageTexts = (elementsToTranslate, lang) => {
-  elementsToTranslate.forEach(function (item) {
-    if (item.element) {
-      const translation = translations[lang][item.key];
-      if (translation) {
-        item.element.textContent = translation;
-      }
+  const currentTranslations = translations[lang] || {};
+
+  // Old system (manual refs)
+  elementsToTranslate.forEach(({ element, key }) => {
+    if (!element) return;
+    const translation = currentTranslations[key];
+    if (typeof translation === "string" && translation.trim() !== "") {
+      element.textContent = translation;
+    }
+  });
+
+  // New system (data-i18n)
+  document.querySelectorAll("[data-i18n]").forEach((el) => {
+    const key = el.getAttribute("data-i18n");
+    const translation = currentTranslations[key];
+    if (typeof translation === "string" && translation.trim() !== "") {
+      el.textContent = translation;
     }
   });
 };
