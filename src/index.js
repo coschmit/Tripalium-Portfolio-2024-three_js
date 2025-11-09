@@ -365,6 +365,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const imageWidth = image.offsetWidth;
       const imageVW = (imageWidth / window.innerWidth) * 100;
       const correctSizesAttribute = `(min-width: 480px) ${imageVW}vw, 100vw)`;
+      // const correctSizesAttribute = `(min-width: 480px) 100vw, 100vw)`; // force 100% quality
       image.setAttribute("sizes", correctSizesAttribute);
     });
   };
