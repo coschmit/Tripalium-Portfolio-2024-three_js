@@ -70,7 +70,7 @@ function isWithinGridBounds(imageBounds, gridRect, margin = 10) {
 
 // Fonction pour randomiser les positions
 function randomizeGridImages() {
-  const images = document.querySelectorAll(".test-grid-image");
+  const images = document.querySelectorAll(".test-grid-video");
   const gridContainer = document.querySelector(".test-grid-grid");
 
   if (!gridContainer) {
@@ -127,6 +127,7 @@ function randomizeGridImages() {
         imageOffsets.set(image, { x: offsetX, y: offsetY });
         // Générer une force de parallax aléatoire pour chaque image (entre 0.5 et 1.5)
         imageParallaxForce.set(image, 0.5 + Math.random());
+        // imageParallaxForce.set(image, 1);
       }
     }
 
@@ -151,7 +152,7 @@ function randomizeGridImages() {
 function updateTransformOrigins() {
   const gridContainer = document.querySelector(".test-grid-grid");
   const gridRect = gridContainer.getBoundingClientRect();
-  const images = document.querySelectorAll(".test-grid-image");
+  const images = document.querySelectorAll(".test-grid-video");
 
   const thirdWidth = gridRect.width / 3;
   const thirdHeight = gridRect.height / 3;
@@ -197,7 +198,7 @@ function initParallax() {
     const deltaY = (e.clientY - centerY) / (rect.height / 2);
 
     // Appliquer le parallax à chaque image avec sa propre force
-    const images = document.querySelectorAll(".test-grid-image");
+    const images = document.querySelectorAll(".test-grid-video");
     images.forEach((image) => {
       const originalOffset = imageOffsets.get(image);
       const parallaxForce = imageParallaxForce.get(image) || 1;
@@ -220,7 +221,7 @@ function initParallax() {
 
 // Fonction pour initialiser l'effet hover avec zoom
 function initHoverEffect() {
-  const images = document.querySelectorAll(".test-grid-image");
+  const images = document.querySelectorAll(".test-grid-video");
   const wrappers = document.querySelectorAll(".test-grid-image-wrapper");
   const logo = document.querySelector(".test-grid-logo");
 
@@ -278,11 +279,23 @@ function initHoverEffect() {
 
 // Fonction pour réinitialiser toutes les positions au centre
 function resetPositions() {
-  const images = document.querySelectorAll(".test-grid-image");
+  const images = document.querySelectorAll(".test-grid-video");
   images.forEach((image) => {
     image.style.transform = "translate(-50%, -50%)";
   });
 }
+
+const hideGridDebugStyle = (hide) => {
+  const emptyTiles = document.querySelectorAll(".test-grid-empty");
+  const imageWrappers = document.querySelectorAll(".test-grid-image-wrapper");
+
+  emptyTiles.forEach((tile) => {
+    tile.style.backgroundColor = hide ? "transparent" : "#69a5aa33";
+  });
+  imageWrappers.forEach((imgWrapper) => {
+    imgWrapper.style.backgroundColor = hide ? "transparent" : "brown";
+  });
+};
 
 // Fonction pour créer l'interface de contrôle
 function createControlPanel() {
@@ -308,7 +321,7 @@ function createControlPanel() {
   const currentGap = parseFloat(computedStyle.gap) || 0;
 
   // Récupérer la taille actuelle des images (en vw)
-  const firstImage = document.querySelector(".test-grid-image");
+  const firstImage = document.querySelector(".test-grid-video");
   const currentImageSize = firstImage
     ? (parseFloat(window.getComputedStyle(firstImage).width) /
         window.innerWidth) *
@@ -402,6 +415,18 @@ function createControlPanel() {
       margin-bottom: 10px;
     ">Regenerate</button>
     
+    <button id="shuffle-videos-btn" style="
+      width: 100%;
+      padding: 10px;
+      background: #36def4ff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-bottom: 10px;
+    ">Shuffle videos</button>
+
     <button id="reset-btn" style="
       width: 100%;
       padding: 10px;
@@ -441,7 +466,7 @@ function createControlPanel() {
   sizeSlider.addEventListener("input", (e) => {
     const value = e.target.value;
     sizeValue.textContent = parseFloat(value).toFixed(1);
-    const images = document.querySelectorAll(".test-grid-image");
+    const images = document.querySelectorAll(".test-grid-video");
     images.forEach((img) => {
       if (img.classList.contains("_16-9")) {
         // portrait
@@ -484,18 +509,6 @@ function createControlPanel() {
   });
 
   // Hide Grid Debug Style
-  const emptyTiles = document.querySelectorAll(".test-grid-empty");
-  const imageWrappers = document.querySelectorAll(".test-grid-image-wrapper");
-
-  const hideGridDebugStyle = (hide) => {
-    emptyTiles.forEach((tile) => {
-      tile.style.backgroundColor = hide ? "transparent" : "#69a5aa33";
-    });
-    imageWrappers.forEach((imgWrapper) => {
-      imgWrapper.style.backgroundColor = hide ? "transparent" : "brown";
-    });
-  };
-  hideGridDebugStyle(true);
   const hideStyleCheckbox = document.getElementById("hide-style-checkbox");
   hideStyleCheckbox.addEventListener("change", (event) => {
     const isChecked = event.target.checked;
@@ -505,6 +518,41 @@ function createControlPanel() {
   // Bouton régénérer
   document.getElementById("regenerate-btn").addEventListener("click", () => {
     randomizeGridImages();
+  });
+
+  const shuffleBtn = document.getElementById("shuffle-videos-btn");
+  shuffleBtn.addEventListener("click", () => {
+    const wrappers = Array.from(
+      document.querySelectorAll(".test-grid-image-wrapper")
+    );
+    const videos = wrappers.map((w) => w.querySelector(".test-grid-video"));
+
+    for (let i = videos.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [videos[i], videos[j]] = [videos[j], videos[i]];
+    }
+
+    wrappers.forEach((wrapper, i) => {
+      const currentVideo = wrapper.querySelector(".test-grid-video");
+      const targetVideo = videos[i];
+
+      if (currentVideo && targetVideo && currentVideo !== targetVideo) {
+        const currentParent = currentVideo.parentNode;
+        const targetParent = targetVideo.parentNode;
+
+        const currentPlaceholder = document.createElement("div");
+        const targetPlaceholder = document.createElement("div");
+
+        currentParent.replaceChild(currentPlaceholder, currentVideo);
+        targetParent.replaceChild(targetPlaceholder, targetVideo);
+
+        currentParent.replaceChild(targetVideo, currentPlaceholder);
+        targetParent.replaceChild(currentVideo, targetPlaceholder);
+      }
+    });
+    console.log("✅ Vidéos échangées entre wrappers (vraiment échangées) !");
+    randomizeGridImages();
+    updateTransformOrigins();
   });
 
   // Bouton reset
@@ -535,6 +583,10 @@ function createControlPanel() {
 
 // Lancer la randomisation au chargement de la page
 document.addEventListener("DOMContentLoaded", () => {
+  setTimeout(() => {
+    hideGridDebugStyle(true);
+  }, 0);
+
   setTimeout(() => {
     createControlPanel();
     randomizeGridImages();
