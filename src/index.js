@@ -14,31 +14,34 @@ const TRIPALIUM_EMAIL = "contact@tripalium-studio.com";
 // is Mobile Landscape
 const isMobile = window.innerWidth <= 768;
 
-// LENIS SMOOTH SCROLL
+let lenisTickerCallback = null;
 
-export const lenis = new Lenis({
-  smoothWheel: !isMobile,
-  lerp: 0.1,
-  wheelMultiplier: 1,
-  gestureOrientation: "vertical",
-  normalizeWheel: false,
-  smoothTouch: false,
-});
+const initLenisScroll = () => {
+  if (isMobile() || isIOS || document.querySelector(".w-editor-publish-node")) {
+    return;
+  }
 
-lenis.on("scroll", ScrollTrigger.update);
-
-gsap.ticker.add((time) => {
-  lenis.raf(time * 1000);
-});
-
-gsap.ticker.lagSmoothing(0);
-
-// prevent from scrolltrigger wrong position due to  lazy loading
-document.querySelectorAll("img").forEach((img) => {
-  img.addEventListener("load", () => {
-    ScrollTrigger.refresh();
+  window.lenis = new Lenis({
+    lerp: 0.1,
+    wheelMultiplier: 1,
+    gestureOrientation: "vertical",
   });
-});
+
+  window.lenis.on("scroll", ScrollTrigger.update);
+
+  if (lenisTickerCallback) {
+    gsap.ticker.remove(lenisTickerCallback);
+  }
+
+  lenisTickerCallback = (time) => {
+    if (window.lenis) {
+      window.lenis.raf(time * 1000);
+    }
+  };
+
+  gsap.ticker.add(lenisTickerCallback);
+  gsap.ticker.lagSmoothing(0);
+};
 
 const getNavbarLetterHTML = (text) => {
   return [...text]
@@ -54,11 +57,19 @@ document.addEventListener("DOMContentLoaded", function () {
   const footer = document.querySelector(".footer");
   // ******************************************* //
 
+  initLenisScroll();
+  // prevent from scrolltrigger wrong position due to  lazy loading
+  document.querySelectorAll("img").forEach((img) => {
+    img.addEventListener("load", () => {
+      ScrollTrigger.refresh();
+    });
+  });
+
   //* LOADING SCREEN ANIMATION
   if (document.querySelector(".page-transition") !== null) {
     let tl = gsap.timeline();
-    if (lenis) {
-      lenis.stop();
+    if (window.lenis) {
+      window.lenis.stop();
     }
     // gsap.set(".home-loading-icon-wrapper", { rotate: 0, opacity: 1 });
     tl.to(".page-transition-icon-wrapper", { opacity: 1, duration: 0.4 })
@@ -69,8 +80,8 @@ document.addEventListener("DOMContentLoaded", function () {
         delay: 0.4,
         ease: "power2.out",
         onComplete: () => {
-          if (lenis) {
-            lenis.start();
+          if (window.lenis) {
+            window.lenis.start();
           }
         },
       })

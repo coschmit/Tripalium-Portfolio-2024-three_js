@@ -1,5 +1,4 @@
 import { studioTranslationsRefs } from "../../localization/pages/studio.js";
-import { lenis } from "../index.js";
 import { updateLanguageTexts } from "../utils.js";
 
 function getCurrentClockByTimeZone(timeZone) {
@@ -241,8 +240,8 @@ document.addEventListener("DOMContentLoaded", function () {
   //********* PROFILE OVERLAY *********//
 
   const handleDisplayCanvasProfile = (event) => {
-    if (lenis) {
-      lenis.stop();
+    if (window.lenis) {
+      window.lenis.stop();
     }
     const dataValue = event?.currentTarget?.dataset?.value;
     if (dataValue) {
@@ -268,8 +267,8 @@ document.addEventListener("DOMContentLoaded", function () {
       opacity: 0,
       onComplete: () => {
         openedOverlay.style.display = "none";
-        if (lenis) {
-          lenis.start();
+        if (window.lenis) {
+          window.lenis.start();
         }
       },
     });
