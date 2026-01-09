@@ -16,7 +16,7 @@ const TRIPALIUM_EMAIL = "contact@tripalium-studio.com";
 let lenisTickerCallback = null;
 
 const initLenisScroll = () => {
-  if (isMobile || isIOS || document.querySelector(".w-editor-publish-node")) {
+  if (isMobile() || isIOS || document.querySelector(".w-editor-publish-node")) {
     return;
   }
 
