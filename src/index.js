@@ -13,8 +13,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 const TRIPALIUM_EMAIL = "contact@tripalium-studio.com";
 
-// is Mobile Landscape
-
 let lenisTickerCallback = null;
 
 const initLenisScroll = () => {
