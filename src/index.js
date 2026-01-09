@@ -3,6 +3,8 @@ import {
   definePopupAnimationTL,
   emailPopupReveal,
   getCopyEmailPopupDefaultWidth,
+  isIOS,
+  isMobile,
   switchNavigationLanguageSelected,
   updateLanguageTexts,
 } from "./utils.js";
@@ -12,12 +14,11 @@ gsap.registerPlugin(ScrollTrigger);
 const TRIPALIUM_EMAIL = "contact@tripalium-studio.com";
 
 // is Mobile Landscape
-const isMobile = window.innerWidth <= 768;
 
 let lenisTickerCallback = null;
 
 const initLenisScroll = () => {
-  if (isMobile() || isIOS || document.querySelector(".w-editor-publish-node")) {
+  if (isMobile || isIOS || document.querySelector(".w-editor-publish-node")) {
     return;
   }
 

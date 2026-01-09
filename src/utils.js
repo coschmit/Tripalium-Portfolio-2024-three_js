@@ -1,5 +1,17 @@
 import { translations } from "../localization/index.js";
 
+export const isSafari = /^((?!chrome|android).)*safari/i.test(
+  navigator.userAgent
+);
+export const isIPhone =
+  /iPhone/.test(navigator.userAgent) && !("MSStream" in window);
+export const isIOS = isSafari || /iP(hone|od|ad)/.test(navigator.userAgent);
+export const isMobileDevice = /Android|iPhone|iPod/i.test(navigator.userAgent);
+export const isMobile = () => window.matchMedia("(max-width: 767px)").matches;
+export const isTablet = () =>
+  window.matchMedia("(min-width: 768px) and (max-width: 991px)").matches;
+export const isDesktop = () => window.matchMedia("(min-width: 992px)").matches;
+
 // ** LOCALIZATION ** //
 export const switchNavigationLanguageSelected = (lang) => {
   const switchFR = document.getElementById("switch-fr");
